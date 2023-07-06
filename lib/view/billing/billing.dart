@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:service_manager/view/billing/addbillproduct/add_bill_product.dart';
+import 'package:service_manager/view/widget/dropdown_textformfield/dropdown_textformfield.dart';
 import '../../core/colors.dart';
 import '../../core/sizing.dart';
 import '../widget/textformfiewld.dart';
@@ -20,10 +21,10 @@ class ScreenBilling extends StatelessWidget {
                         Navigator.pop(context);
                       }, child: Container(width: 40,height: 40,color: clrDarkBlue,child: const Icon(Icons.arrow_back,color: Colors.white,size: 30,),)),
           ),
-          
-          //  TopTextTextFormFieldWidget(height: 50,width: 370,text: 'Customer',fontsize: 20),
-          //   TopTextTextFormFieldWidget(height: 50,width: 370,text: 'Phone    '),
-          //        TopTextTextFormFieldWidget(height: 200,width: 370,text: 'Billing Address :',maxLines: 7,condition: true),
+          DropdownTextFormField(suggestions: ['hi','helo','das']),
+          //  TopTextTextFormFieldWidget(height: 50,width: 370,text: 'Customer',fontsize: 20, controllerObj: TextEditingController(),screenName: ''),
+            TopTextTextFormFieldWidget(height: 50,width: 370,text: 'Phone',controllerObj: TextEditingController(),screenName: ''),
+                 TopTextTextFormFieldWidget(height: 200,width: 370,text: 'Billing Address :',maxLines: 7,condition: true,controllerObj: TextEditingController(),screenName: ''),
           Padding(
                 padding: const EdgeInsets.only(left: 5,right: 10,top: 20),
                 child: Column(

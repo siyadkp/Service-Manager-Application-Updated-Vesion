@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
@@ -11,7 +10,6 @@ import '../../controller/provider/loading/loading.dart';
 import '../../core/naming.dart';
 import '../widget/dropdown_textformfield/dropdown_textformfield.dart';
 import '../widget/textformfiewld.dart';
-
 
 class ScreenAddNewCall extends StatefulWidget {
   const ScreenAddNewCall({super.key});
@@ -76,9 +74,7 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DropdownTextFormField(
-                    suggestions:
-                        Provider.of<AddCustomerNotifier>(context, listen: false)
-                            .customerKeys,
+                    screenName: allScreenNames[2],
                   ),
                   Text(
                     addNewCallNotifier.validationError[0],
@@ -132,7 +128,8 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 10),
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
                                         child: Text(
                                           datePickerNotifier.formattedDate!,
                                           style: TextStyle(fontSize: 17),
@@ -144,7 +141,6 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
                               ),
                             ]);
                       }),
-                      
                     ],
                   ),
                   TopTextTextFormFieldWidget(
@@ -234,7 +230,10 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
                                         type: dropdownValue!,
                                         productCategory: addNewCallNotifier
                                             .productCategory.text,
-                                        date: Provider.of<DatePickerNotifier>(context,listen: false).formattedDate!,
+                                        date: Provider.of<DatePickerNotifier>(
+                                                context,
+                                                listen: false)
+                                            .formattedDate!,
                                         product:
                                             addNewCallNotifier.product.text,
                                         complaint:

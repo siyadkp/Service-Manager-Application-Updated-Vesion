@@ -17,4 +17,5 @@ const List<String> allScreenNames= [
   'Screen ProductView',
   'Screen CustomerView',
   'Screen ServiceCallview',
+  'Screen Billing'
 ];

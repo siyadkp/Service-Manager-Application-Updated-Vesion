@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
+import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
 import 'package:service_manager/controller/provider/date_picker_provider/date_picker_provider.dart';
 import 'package:service_manager/controller/provider/loading/loading.dart';
 import 'package:service_manager/controller/provider/login/login_page_provider.dart';
@@ -37,9 +38,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AdminAddProductNotifier(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => TextFormFieldNotifier(),
-        // ),
         ChangeNotifierProvider(
           create: (context) => LoadingModel(),
         ),
@@ -57,7 +55,10 @@ class MyApp extends StatelessWidget {
         ),
           ChangeNotifierProvider(
           create: (context) => DatePickerNotifier(),
-        )
+        ),
+         ChangeNotifierProvider(
+          create: (context) => BillingNotifier(),
+        ),
       ],
       child: MaterialApp(
         title: 'Service Manager',

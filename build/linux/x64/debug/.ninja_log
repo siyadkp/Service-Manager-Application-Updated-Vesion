@@ -1,57 +1,82 @@
 # ninja log v5
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/libflutter_linux_gtk.so	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_engine.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_value.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_view.h	30054f4c1331c7bb
-2	137598	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	30054f4c1331c7bb
-2	137598	0	flutter/_phony_	30054f4c1331c7bb
-137627	149272	1688533485689378767	CMakeFiles/service_manager.dir/main.cc.o	9fb65ccba47c8226
-137628	149362	1688533485741378992	CMakeFiles/service_manager.dir/my_application.cc.o	238b3776b9f02e92
-137630	149403	1688533485689378767	CMakeFiles/service_manager.dir/flutter/generated_plugin_registrant.cc.o	1ff6aeff17a72add
+3889	4404	1688634329961859990	CMakeFiles/service_manager.dir/flutter/generated_plugin_registrant.cc.o	1ff6aeff17a72add
+4	3889	0	flutter/_phony_	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	30054f4c1331c7bb
 137631	149418	1688533485881379597	plugins/file_selector_linux/CMakeFiles/file_selector_linux_plugin.dir/file_selector_plugin.cc.o	87861cd5455d07bd
-149419	150603	1688533487105384888	plugins/file_selector_linux/libfile_selector_linux_plugin.so	99596e545da2a86f
-150603	152123	1688533488625391455	intermediates_do_not_run/service_manager	e820255195668f15
-152123	154377	0	CMakeFiles/install.util	fae841bd3c264fb1
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/libflutter_linux_gtk.so	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_engine.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_value.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_view.h	30054f4c1331c7bb
-267	39517	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	30054f4c1331c7bb
-267	39517	0	flutter/_phony_	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_view.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	30054f4c1331c7bb
+3889	4436	1688634329993860154	CMakeFiles/service_manager.dir/my_application.cc.o	238b3776b9f02e92
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	30054f4c1331c7bb
+4612	4854	0	CMakeFiles/install.util	fae841bd3c264fb1
+137627	149272	1688533485689378767	CMakeFiles/service_manager.dir/main.cc.o	9fb65ccba47c8226
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/libflutter_linux_gtk.so	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	30054f4c1331c7bb
 39601	47185	1688628728357290768	plugins/file_selector_linux/libfile_selector_linux_plugin.so	9802cdd8970c2f75
-39597	53173	1688628734545184003	CMakeFiles/service_manager.dir/flutter/generated_plugin_registrant.cc.o	1ff6aeff17a72add
-39594	53256	1688628734605182976	CMakeFiles/service_manager.dir/my_application.cc.o	238b3776b9f02e92
-53256	54996	1688628736381152604	intermediates_do_not_run/service_manager	f956cf986e6236d
-54996	56969	0	CMakeFiles/install.util	fae841bd3c264fb1
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_engine.h	30054f4c1331c7bb
+4436	4612	1688634330173861079	intermediates_do_not_run/service_manager	f956cf986e6236d
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_value.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	30054f4c1331c7bb
+4	3889	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/libflutter_linux_gtk.so	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_engine.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_value.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_view.h	30054f4c1331c7bb
+3	3935	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	30054f4c1331c7bb
+3	3935	0	flutter/_phony_	30054f4c1331c7bb
+3936	4447	1688634356725997517	CMakeFiles/service_manager.dir/flutter/generated_plugin_registrant.cc.o	1ff6aeff17a72add
+3935	4490	1688634356769997743	CMakeFiles/service_manager.dir/my_application.cc.o	238b3776b9f02e92
+4490	4667	1688634356949998669	intermediates_do_not_run/service_manager	f956cf986e6236d
+4667	4896	0	CMakeFiles/install.util	fae841bd3c264fb1
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/libflutter_linux_gtk.so	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_engine.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_value.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/fl_view.h	30054f4c1331c7bb
+32	9083	0	/home/siyad/Documents/Flutter Work Space/Service-Manager-Application/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	30054f4c1331c7bb
+32	9083	0	flutter/_phony_	30054f4c1331c7bb
+9084	10908	1688644098693701091	CMakeFiles/service_manager.dir/flutter/generated_plugin_registrant.cc.o	1ff6aeff17a72add
+9083	10910	1688644098697701093	CMakeFiles/service_manager.dir/my_application.cc.o	238b3776b9f02e92
+10910	11490	1688644099289701609	intermediates_do_not_run/service_manager	f956cf986e6236d
+11490	12063	0	CMakeFiles/install.util	fae841bd3c264fb1

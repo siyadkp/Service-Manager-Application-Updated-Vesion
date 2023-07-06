@@ -9,7 +9,6 @@ import '../search/const_search_objects.dart';
 class AddNewServiceCallNotifier with ChangeNotifier {
   TextEditingController customer = TextEditingController();
   TextEditingController productCategory = TextEditingController();
-  
   TextEditingController product = TextEditingController();
   TextEditingController complaint = TextEditingController();
   TextEditingController serialNumber = TextEditingController();

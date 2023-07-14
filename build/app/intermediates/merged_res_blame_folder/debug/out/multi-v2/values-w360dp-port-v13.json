@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.service_manager.app-mergeDebugResources-35:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.example.service_manager.app-mergeDebugResources-42:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
                     "source": "/home/siyad/.gradle/caches/transforms-3/6a31700874d8768c1a72a6f7d5d446cb/transformed/material-1.3.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",

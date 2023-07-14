@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-
-
 import '../search/const_search_objects.dart';
 
 class AddNewServiceCallNotifier with ChangeNotifier {
@@ -26,44 +24,45 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     '',
     '',
   ];
+  Map<String, Map<String, QueryDocumentSnapshot>> userBasedCallDatas = {};
   Map<String, QueryDocumentSnapshot> collectionOfDatas =
       customerViewScreenSearchNotifierObject.collectionOfDatas;
   List<String> callDataKeys = [];
   Map<String, QueryDocumentSnapshot> callDatas = {};
   String? _currentjobnumber;
 
-  getServiceDataFormFirebase() async {
-    List<QueryDocumentSnapshot> queryDocumentSnapshot = [];
+  Future<void> getServiceDataFromFirebase() async {
     try {
-      queryDocumentSnapshot.clear();
       callDatas.clear();
       callDataKeys = [];
-      serviceCallViewScreenSearchNotifierObject.collectionOfDatas = {};
-      serviceCallViewScreenSearchNotifierObject.collectionOfDatsKeys = [];
+      QuerySnapshot serviceCallData = await callCollection.get();
+
+      for (QueryDocumentSnapshot doc in serviceCallData.docs) {
+        String customer = doc.get('customer');
+        String docId = doc.id;
+        callDatas.putIfAbsent(docId, () => doc);
+        serviceCallViewScreenSearchNotifierObject.insert(docId);
+        if (doc.get('status') == "Complete") {
+          userBasedCallDatas.putIfAbsent(customer, () => {});
+          userBasedCallDatas[customer]?.putIfAbsent(docId, () => doc);
+        }
+      }
+      callDataKeys.addAll(callDatas.keys);
+
       if (isWorked) {
-        DocumentReference? jobNumberDoc = jobNumber.doc("KktKIyTkv43TOmMZjF3i");
+        DocumentReference jobNumberDoc = jobNumber.doc("KktKIyTkv43TOmMZjF3i");
         DocumentSnapshot snapshot = await jobNumberDoc.get();
         _currentjobnumber = snapshot.get('currentjobnumber');
         isWorked = false;
       }
-
-      QuerySnapshot? serviceCallData = await callCollection.get();
-
-      queryDocumentSnapshot.addAll(serviceCallData.docs);
-      for (QueryDocumentSnapshot doc in serviceCallData.docs) {
-        callDatas[doc.get('customer')] = doc;
-        serviceCallViewScreenSearchNotifierObject.insert(doc.get('customer'));
-      }
-      serviceCallViewScreenSearchNotifierObject.collectionOfDatas = callDatas;
-      serviceCallViewScreenSearchNotifierObject.collectionOfDatsKeys
-          .addAll(callDatas.keys);
-      callDataKeys.addAll(callDatas.keys);
-    } on FirebaseException catch (e) {
-      print(e);
+    } catch (error) {
+      // Handle any errors that occur during the execution of the code
+      print('An error occurred: $error');
     }
   }
 
   addNewCallToFirebase({
+    required String customerName,
     required String type,
     required String productCategory,
     required String date,
@@ -73,16 +72,18 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     required String description,
   }) async {
     _currentjobnumber = (int.parse(_currentjobnumber!) + 1).toString();
+
     DocumentReference docRef = jobNumber.doc("KktKIyTkv43TOmMZjF3i");
-    docRef.update({
+    await docRef.update({
       'currentjobnumber': _currentjobnumber,
     });
 
-    Map<String, String> customerMap = {
+    Map<String, dynamic> customerMap = {
       'jobnumber': _currentjobnumber!,
       'status': 'Pending',
       'type': type,
-      'customer': customer.text,
+      'customer':
+          customerName, // Use the parameter value instead of customer.text
       'productCategory': productCategory,
       'date': date,
       'updatedDate': '',
@@ -93,14 +94,16 @@ class AddNewServiceCallNotifier with ChangeNotifier {
       'service': '',
       'amount': ''
     };
-    await callCollection.add(customerMap);
-    await getServiceDataFormFirebase();
+
+    // Use the callCollection.doc().collection(customerName) path instead of collection(customerName)
+    await callCollection.doc(_currentjobnumber).set(customerMap);
+
+    await getServiceDataFromFirebase();
     controllerClear();
     notifyListeners();
   }
 
   textformfieldValidation(String value, int index) {
-    print(collectionOfDatas.containsKey(value));
     if (index == 0) {
       if (value.isEmpty) {
         validationError[index] = 'This value is required';

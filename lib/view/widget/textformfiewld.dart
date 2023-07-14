@@ -70,7 +70,7 @@ class _TopTextTextFormFieldWidgetState
               height: widget.height,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  border: Border.all(color: clrGrey)),
+                  border: Border.all(color:KColors.clrGrey)),
               child: widget.condition
                   ? TextFormField(
                       controller: widget.controllerObj,

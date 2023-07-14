@@ -1,18 +1,14 @@
-import 'dart:io';
-
-class ProductModel {
+class BillProductModel {
   String productName;
-  String serialNumber;
   String qty;
-  String wholesalePrice;
-  String retailPrice;
-  String totalPrice;
-  String photo;
-  ProductModel(
+  String discount;
+  String amount;
+  String totalAmount;
+  BillProductModel(
       {required this.productName,
-      required this.serialNumber,
       required this.qty,
-      required this.wholesalePrice,
-      required this.retailPrice,
-      required this.totalPrice,required this.photo});
+      required this.discount,
+      required this.amount,
+      required this.totalAmount,
+      });
 }

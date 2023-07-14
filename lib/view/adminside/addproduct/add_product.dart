@@ -37,7 +37,7 @@ class ScreenAdminAddProduct extends StatelessWidget {
                             icon: Icon(
                               Icons.arrow_back,
                               size: 30,
-                              color: clrDarkBlue,
+                              color: KColors.clrDarkBlue,
                             )),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -198,7 +198,7 @@ class ScreenAdminAddProduct extends StatelessWidget {
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  clrDarkBlue, // Background color
+                                                  KColors.clrDarkBlue, // Background color
                                             ),
                                             onPressed: () async {
                                               bool condition = false;
@@ -238,7 +238,7 @@ class ScreenAdminAddProduct extends StatelessWidget {
                                                       Text('Product Added'),
                                                   duration:
                                                       Duration(seconds: 3),
-                                                  backgroundColor: clrGreen,
+                                                  backgroundColor: KColors.clrGreen,
                                                 );
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(snackBar);

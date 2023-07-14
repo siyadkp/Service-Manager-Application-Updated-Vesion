@@ -5,7 +5,7 @@ import 'package:service_manager/controller/provider/admin_add_product/admin_add_
 import 'package:service_manager/view/adminside/addproduct/add_product.dart';
 
 import '../../../controller/provider/login/login_page_provider.dart';
-import '../../Login/sign_in.dart';
+import '../../login/sign_in.dart';
 
 class ScreenAdminHome extends StatelessWidget {
   const ScreenAdminHome({super.key});

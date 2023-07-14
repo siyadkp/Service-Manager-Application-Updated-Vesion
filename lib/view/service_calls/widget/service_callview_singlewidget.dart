@@ -78,7 +78,7 @@ colorvalue=3;
               
               width: 72.4,
               height: double.infinity,
-               decoration: BoxDecoration(color:statusColor[colorvalue],borderRadius: BorderRadius.only(topRight: Radius.circular(15),bottomRight: Radius.circular(15))),
+               decoration: BoxDecoration(color:KColors.statusColor[colorvalue],borderRadius: BorderRadius.only(topRight: Radius.circular(15),bottomRight: Radius.circular(15))),
                child: Center(
                  child: Text(
                             widget.serviceCallData?.get('status'), 

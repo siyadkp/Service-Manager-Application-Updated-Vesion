@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
-import 'package:service_manager/core/colors.dart';
 import 'package:service_manager/view/billing/billing.dart';
 import 'package:service_manager/view/new_call_adding/new_call_adding.dart';
 import '../../customerview.dart/customer_view.dart';
@@ -15,12 +15,12 @@ class ServiceCardWidget extends StatelessWidget {
       required this.text,
       required this.image,
       required this.top,
-      required this.Index});
+      required this.index});
 
   String text;
   String image;
   double top;
-  int Index;
+  int index;
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +28,28 @@ class ServiceCardWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            if (Index == 0) {
+            if (index == 0) {
               Provider.of<AddNewServiceCallNotifier>(context, listen: false)
                   .validationError = ['', '', '', '', ''];
 
               return const ScreenAddNewCall();
-            } else if (Index == 1) {
+            } else if (index == 1) {
               return const ScreenServiceCalls();
-            } else if (Index == 2) {
+            } else if (index == 2) {
               return const ScreenCustomerView();
-            } else if (Index == 3) {
+            } else if (index == 3) {
               return const ScreenProductView();
             } else {
               Provider.of<BillingNotifier>(context,listen: false).clearDataFromController();
               return const ScreenBilling();
             }
           },
-        ));
+        ),);
       },
       child: Card(
+        
         color: Colors.white,
+        elevation: 8,
         child: Column(
           children: [
             Padding(
@@ -62,16 +64,18 @@ class ServiceCardWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 60,
+              padding:  EdgeInsets.only(
+                top: text == "Product and Details" ? 45 :55,
+                left: 10
               ),
               child: SizedBox(
                   width: 160,
-                  height: 40,
+                  height: text == "Product and Details" ?50: 40,
                   child: Text(
                     text,
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w700),
+                    style:GoogleFonts.poppins( fontSize: 17, fontWeight: FontWeight.w600)
+                    
+                     
                   ),),
             )
           ],

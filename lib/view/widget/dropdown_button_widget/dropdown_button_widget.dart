@@ -40,7 +40,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
       width: widget.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          border: Border.all(color: clrGrey)),
+          border: Border.all(color: KColors.clrGrey)),
       child: DropdownButton<String>(
         value: dropdownValue,
         icon: SizedBox(),

@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
+import 'package:service_manager/controller/provider/add_product_to_bill_provider/add_product_to_bill_provider.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
 import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
 import 'package:service_manager/controller/provider/date_picker_provider/date_picker_provider.dart';
@@ -11,14 +13,13 @@ import 'package:service_manager/controller/provider/login/login_page_provider.da
 import 'package:service_manager/controller/provider/register/register_page_provider.dart';
 import 'package:service_manager/controller/provider/search/search_provider.dart';
 import 'package:service_manager/controller/provider/service_call_status_updation/service_call_status_updation.dart';
+import 'package:service_manager/view/sample.dart';
 import 'package:service_manager/view/splash/splash.dart';
-import 'controller/provider/textformfield_provider/textformfield_provider.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FlutterDownloader.initialize();
   runApp(const MyApp());
 }
 
@@ -41,22 +42,26 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => LoadingModel(),
         ),
-         ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (context) => AddCustomerNotifier(),
         ),
-           ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (context) => TrieNotifier(),
         ),
-             ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (context) => AddNewServiceCallNotifier(),
         ),
-         ChangeNotifierProvider(
-          create: (context) => ServiceCallStatusUpdationNotifier( context: context),
+        ChangeNotifierProvider(
+          create: (context) =>
+              ServiceCallStatusUpdationNotifier(context: context),
         ),
-          ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (context) => DatePickerNotifier(),
         ),
-         ChangeNotifierProvider(
+        ChangeNotifierProvider(
+          create: (context) => AddProductToBillNotif(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => BillingNotifier(),
         ),
       ],

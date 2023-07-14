@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:service_manager/controller/provider/add_product_to_bill_provider/add_product_to_bill_provider.dart';
 import 'package:service_manager/core/colors.dart';
 
 class RightTextTextFormFieldWidget extends StatelessWidget {
@@ -14,7 +16,8 @@ class RightTextTextFormFieldWidget extends StatelessWidget {
       this.paddingtop = 25,
       this.fontsize = 15,
       this.condition = false,
-      this.hintText = '',this.keyboardType=TextInputType.name});
+      this.hintText = '',
+      this.keyboardType = TextInputType.name});
   double width;
   double height;
   double paddingtop;
@@ -26,9 +29,8 @@ class RightTextTextFormFieldWidget extends StatelessWidget {
   String hintText;
   bool condition;
   TextEditingController controllerObj;
-   TextInputType keyboardType;
+  TextInputType keyboardType;
 
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,11 +47,12 @@ class RightTextTextFormFieldWidget extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-         borderRadius: BorderRadius.circular(15)),
+                borderRadius: BorderRadius.circular(7),
+                border: Border.all(color: KColors.clrGrey)),
             child: condition
                 ? TextField(
-                  controller:controllerObj ,
-                   keyboardType: keyboardType,
+                    controller: controllerObj,
+                    keyboardType: keyboardType,
                     decoration: const InputDecoration(
                         //labelText: title ,  // you can change this with the top text  like you want
                         hintText: "Please enter your ",
@@ -62,20 +65,15 @@ class RightTextTextFormFieldWidget extends StatelessWidget {
                     },
                   )
                 : TextField(
-                  controller: controllerObj,
-                   keyboardType: keyboardType,
+                    controller: controllerObj,
+                    keyboardType: keyboardType,
                     decoration: const InputDecoration(
                         //labelText: title ,  // you can change this with the top text  like you want
                         hintText: "Please enter your ",
-                        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color:clrGrey, width: 2.0),
-          ),
-                          border: OutlineInputBorder(),
+                        border: InputBorder.none,
                         filled: true),
                     onChanged: (value) {
-                      if (controllerListName == 'addProductControlerList') {
-                        // addProductControlerList[controllerIndex!];
-                      }
+                     Provider.of<AddProductToBillNotif>(context,listen: false).productTotalAmount();
                     },
                   ),
           ),

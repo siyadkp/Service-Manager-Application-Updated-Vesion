@@ -36,8 +36,8 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                     child: Container(
                       width: 40,
                       height: 40,
-                      color: clrDarkBlue,
-                      child: Icon(
+                      color: KColors.clrDarkBlue,
+                      child: const Icon(
                         Icons.arrow_back,
                         color: Colors.white,
                         size: 30,
@@ -50,18 +50,18 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 50),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 50),
                         child: Text(
                           'Status',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       DropdownButtonWidget(
-                        list: ['Pending', 'Estimate', 'Complete', 'Delivery'],
+                        list: const ['Pending', 'Estimate', 'Complete',],
                         status: serviceCallStatusUpdationNotifier.status!,
                         width: 100,
                       )
@@ -75,7 +75,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Customer',
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.w500),
@@ -85,7 +85,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7),
-                            border: Border.all(color: clrGrey),
+                            border: Border.all(color: KColors.clrGrey),
                           ),
                           child: Row(
                             children: [
@@ -93,7 +93,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
                                   customerName,
-                                  style: TextStyle(fontSize: 17),
+                                  style: const TextStyle(fontSize: 17),
                                 ),
                               ),
                             ],
@@ -125,7 +125,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Date',
                                     style: TextStyle(
                                         fontSize: 17,
@@ -140,7 +140,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                                       height: 41,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(7),
-                                        border: Border.all(color: clrGrey),
+                                        border: Border.all(color: KColors.clrGrey),
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
@@ -151,7 +151,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                                                 const EdgeInsets.only(left: 10),
                                             child: Text(
                                               datePickerNotifier.formattedDate!,
-                                              style: TextStyle(fontSize: 17),
+                                              style: const TextStyle(fontSize: 17),
                                             ),
                                           ),
                                         ],
@@ -228,7 +228,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    clrDarkBlue, // Background color
+                                    KColors.clrDarkBlue, // Background color
                               ),
                               onPressed: () async {
                                 bool condition = false;
@@ -243,7 +243,7 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                                           context,
                                           listen: false)
                                       .serviceCallStatusUpdation(
-                                          status: serviceCallStatusUpdationNotifier.status == 'Complete'? 'Delivery':dropdownValue!,
+                                          currentStatus: dropdownValue!,
                                           customer:
                                               serviceCallStatusUpdationNotifier
                                                   .customer.text,
@@ -264,27 +264,27 @@ class ScreenCallStatusUpdation extends StatelessWidget {
                                           amount:
                                               serviceCallStatusUpdationNotifier
                                                   .amount.text,
-                                          docId: docId);
+                                          docId: docId, );
                                   loadingModel.stopLoading();
-                                  final snackBar = SnackBar(
-                                    content: Text('Call Status Updated'),
-                                    duration: Duration(seconds: 3),
-                                    backgroundColor: clrGreen,
+                                  final snackBar =  SnackBar(
+                                    content: const Text('Call Status Updated'),
+                                    duration: const Duration(seconds: 3),
+                                    backgroundColor: KColors.clrGreen,
                                   );
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 }
                               },
                               child: loadingModel.isLoading
-                                  ? Center(
+                                  ? const Center(
                                       child: SizedBox(
                                           height: 20,
                                           width: 20,
                                           child: CircularProgressIndicator(
                                               color: Colors.white,
                                               strokeWidth: 3)))
-                                  : Center(
-                                      child:serviceCallStatusUpdationNotifier.status == 'Complete'?Text('Delivery'):Text('Update Status'),
+                                  : const Center(
+                                      child:Text('Update Status'),
                                     ),
                             ),
                           ),

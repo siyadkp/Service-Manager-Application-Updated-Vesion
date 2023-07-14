@@ -42,7 +42,7 @@ class ScreenProductView extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                           left: 7, right: 7, top: 0),
                                       itemBuilder: (context, index) {
-                                    return  SIngleProductViewWidget(productData:productsViewScreenSearchNotifierObject.collectionOfDatas[productsViewScreenSearchNotifierObject.collectionOfDatsKeys[index]]);                   
+                                    return  SingleProductViewWidget(productData:productsViewScreenSearchNotifierObject.collectionOfDatas[productsViewScreenSearchNotifierObject.collectionOfDatsKeys[index]]);                   
                 },  itemCount: productsViewScreenSearchNotifierObject.collectionOfDatas.length),),),
                     ),
                     Card(
@@ -50,7 +50,7 @@ class ScreenProductView extends StatelessWidget {
                         child: Container(
                             width: double.infinity,
                             height: 140,
-                            color: clrDarkBlue,
+                            color: KColors.clrDarkBlue,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

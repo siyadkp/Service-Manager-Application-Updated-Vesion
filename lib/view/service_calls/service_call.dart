@@ -20,13 +20,13 @@ class ScreenServiceCalls extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              color: clrDarkBlue,
-              margin: EdgeInsets.all(0),
-              shape:RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(25) ) ),
+              color: KColors.clrDarkBlue,
+              margin: const EdgeInsets.all(0),
+              shape:const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(25) ) ),
               elevation: 5,
               child: Container(
                
-  decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(25) ) ),
+  decoration: const BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(25) ) ),
                 height: 120,
                 width: double.infinity,
                 child: Padding(
@@ -61,9 +61,9 @@ class ScreenServiceCalls extends StatelessWidget {
                                       screenName: allScreenNames[8]),
                                 ));
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: const Icon(
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Icon(
                               Icons.search,
                               size: 35,
                               color: Colors.white,
@@ -82,14 +82,14 @@ class ScreenServiceCalls extends StatelessWidget {
                   Consumer<AddNewServiceCallNotifier>(
                     builder: (context, addNewServiceCallNotifier, child) {
                       return addNewServiceCallNotifier.callDatas.isEmpty
-                          ? Center(
+                          ? const Center(
                               child: Text(
                               'No data found for the call',
                               style: TextStyle(fontSize: 20),
                             ))
                           : ListView.separated(
                               padding:
-                                  EdgeInsets.only(top: 30, left: 10, right: 12),
+                                  const EdgeInsets.only(top: 30, left: 10, right: 12),
                               separatorBuilder: (context, index) =>
                                   const SizedBox(
                                 height: 5,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
 import 'package:service_manager/core/sizing.dart';
-
 import '../../controller/provider/loading/loading.dart';
 import '../../core/colors.dart';
 import '../../core/naming.dart';
@@ -28,7 +27,7 @@ class _ScreenCustomerAddingState extends State<ScreenCustomerAdding> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(onPressed: (){ Navigator.pop(context);}, icon:Icon(Icons.arrow_back,color:clrDarkBlue,),),
+                IconButton(onPressed: (){ Navigator.pop(context);}, icon:Icon(Icons.arrow_back,color:KColors.clrDarkBlue,),),
                 Row(
                   children: [
                     Padding(
@@ -143,7 +142,7 @@ class _ScreenCustomerAddingState extends State<ScreenCustomerAdding> {
                         width: 120,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: clrDarkBlue, // Background color
+                            backgroundColor: KColors.clrDarkBlue, // Background color
                           ),
                           onPressed: () async {
                             bool condition = false;
@@ -167,10 +166,10 @@ class _ScreenCustomerAddingState extends State<ScreenCustomerAdding> {
                                     addCustomerNotifier.billingAddress.text,
                               );
                               loadingModel.stopLoading();
-                              const snackBar = SnackBar(
+                              final snackBar = SnackBar(
                                 content: Text('Cutomor Added'),
                                 duration: Duration(seconds: 3),
-                                backgroundColor: clrGreen,
+                                backgroundColor:KColors.clrGreen,
                               );
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);

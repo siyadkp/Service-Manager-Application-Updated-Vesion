@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:service_manager/core/sizing.dart';
 
 import '../../controller/provider/login/login_page_provider.dart';
-import '../Login/sign_in.dart';
+import '../login/sign_in.dart';
 import 'widget/widget.dart';
 
 class ScreenSettings extends StatelessWidget {

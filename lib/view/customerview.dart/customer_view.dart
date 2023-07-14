@@ -8,13 +8,13 @@ import 'package:service_manager/view/costomeradding/costomer_adding.dart';
 import 'package:service_manager/view/customerview.dart/widget/customer_view_singlewidget.dart';
 import 'package:service_manager/view/widget/screeen_search.dart';
 
-
 class ScreenCustomerView extends StatelessWidget {
   const ScreenCustomerView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-   AddCustomerNotifier addCustomerNotifierObj= Provider.of<AddCustomerNotifier>(context,listen: false);
+    AddCustomerNotifier addCustomerNotifierObj =
+        Provider.of<AddCustomerNotifier>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -44,55 +44,111 @@ class ScreenCustomerView extends StatelessWidget {
             //     ),
             //   ),
             // ),
-               Padding(
-             padding: const EdgeInsets.only(left: 12,top: 8,bottom: 18),
-             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 InkWell( onTap: () {
-                      Navigator.pop(context);
-                    }, child: Container(width: 40,height: 40,color: clrDarkBlue,child: const Icon(Icons.arrow_back,color: Colors.white,size: 30,),)),
+            Padding(
+              padding: const EdgeInsets.only(left: 12, top: 8, bottom: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        color: KColors.clrDarkBlue,
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      )),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8,right: 5),
-                    child: GestureDetector( onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSearch(collectionOfDatas:addCustomerNotifierObj.customerDatas,collectionOfDatasKeys: addCustomerNotifierObj.customerKeys,screenName:allScreenNames[7] ),));}, child: const Icon(Icons.search,size: 40,color: clrDarkBlue,) ),
+                    padding: const EdgeInsets.only(bottom: 8, right: 5),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ScreenSearch(
+                                    collectionOfDatas:
+                                        addCustomerNotifierObj.customerDatas,
+                                    collectionOfDatasKeys:
+                                        addCustomerNotifierObj.customerKeys,
+                                    screenName: allScreenNames[7]),
+                              ));
+                        },
+                        child:  Icon(
+                          Icons.search,
+                          size: 40,
+                          color: KColors.clrDarkBlue,
+                        )),
                   )
-               ],
-             ),
-           ),
+                ],
+              ),
+            ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('Name',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
-                 Text('Phone',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),Text('Place',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),)
+                Text(
+                  'Name',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  'Phone',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  'Place',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                )
               ],
             ),
             Expanded(
               child: Stack(
                 children: [
                   Consumer<AddCustomerNotifier>(
-                    builder: (context, addCustomerNotifier, _)  {
-                      if(addCustomerNotifier.customerDatas.isEmpty){
-                        return Center(child: Text('No Customers',style:TextStyle(fontSize: 20),));
-                      }
-                      return ListView.separated(
-                        padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 2,
-                        ),
-                        itemBuilder: (context, index) {
-                          return  CustomerViewSingleWidget(customerData: addCustomerNotifier.customerDatas[ addCustomerNotifier.customerKeys[index]],);
-                        },
-                        itemCount:  addCustomerNotifier.customerDatas.length,
-                      );
+                      builder: (context, addCustomerNotifier, _) {
+                    if (addCustomerNotifier.customerDatas.isEmpty) {
+                      return Center(
+                          child: Text(
+                        'No Customers',
+                        style: TextStyle(fontSize: 20),
+                      ));
                     }
-                  ),
-                  Positioned(bottom: 5,right: 15, child: FloatingActionButton(backgroundColor:  clrDarkBlue, onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenCustomerAdding(),));
-                  },child: const Icon(Icons.person_add_alt_1),))
+                    return ListView.separated(
+                      padding:
+                          const EdgeInsets.only(top: 5, left: 15, right: 15),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 2,
+                      ),
+                      itemBuilder: (context, index) {
+                        return CustomerViewSingleWidget(
+                          customerData: addCustomerNotifier.customerDatas[
+                              addCustomerNotifier.customerKeys[index]],
+                        );
+                      },
+                      itemCount: addCustomerNotifier.customerDatas.length,
+                    );
+                  }),
+                  Positioned(
+                      bottom: 5,
+                      right: 15,
+                      child: FloatingActionButton(
+                        backgroundColor: KColors.clrDarkBlue,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ScreenCustomerAdding(),
+                              ));
+                        },
+                        child: const Icon(Icons.person_add_alt_1),
+                      ))
                 ],
               ),
             ),
-          
           ],
         ),
       ),

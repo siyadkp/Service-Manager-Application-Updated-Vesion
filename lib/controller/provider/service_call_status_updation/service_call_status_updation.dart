@@ -55,7 +55,7 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
 //   }
 
   serviceCallStatusUpdation(
-      {required String status,
+      {required String currentStatus,
       required String customer,
       required String productCategory,
       required String updatedDate,
@@ -63,10 +63,11 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
       required String service,
       required String decoration,
       required String amount,
-      required String docId}) async {
+      required String docId,}) async {
+
     DocumentReference docRef = callCollection.doc(docId);
     docRef.update({
-      'status': status,
+      'status': currentStatus,
       'customer': customer,
       'productCategory': productCategory,
       'updatedDate': updatedDate,
@@ -76,7 +77,7 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
       'amount': amount
     });
     Provider.of<AddNewServiceCallNotifier>(context, listen: false)
-        .getServiceDataFormFirebase();
+        .getServiceDataFromFirebase();
     controllerClear();
     notifyListeners();
   }

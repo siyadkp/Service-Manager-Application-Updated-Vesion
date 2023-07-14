@@ -32,9 +32,9 @@ class ScreenSearch extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back,
-                  color: clrDarkBlue,
+                  color: KColors.clrDarkBlue,
                   size: 35,
                 )),
             Padding(

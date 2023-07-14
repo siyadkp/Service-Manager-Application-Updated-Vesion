@@ -18,7 +18,7 @@ QueryDocumentSnapshot? serviceCallData;
             children: [
               Align(alignment: Alignment.topLeft, child: InkWell(onTap: () {
                 Navigator.pop(context);
-              }, child: Container(width: 40,height: 40,color: clrDarkBlue,child: Icon(Icons.arrow_back,color: Colors.white,size: 30,),))),
+              }, child: Container(width: 40,height: 40,color: KColors.clrDarkBlue,child: Icon(Icons.arrow_back,color: Colors.white,size: 30,),))),
                const Text(
                 'Call Details',
                 style: TextStyle(fontSize: 25),
@@ -81,7 +81,7 @@ QueryDocumentSnapshot? serviceCallData;
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenCallStatusUpdation(),));
                 },
                 child: const Text('Edit Call Details'),style: ElevatedButton.styleFrom(
-                            backgroundColor: clrDarkBlue,
+                            backgroundColor: KColors.clrDarkBlue,
                            
                           ),
               )

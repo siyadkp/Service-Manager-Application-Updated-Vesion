@@ -24,7 +24,7 @@ class SearchBarWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(width: 2, color: clrDarkBlue)),
+            border: Border.all(width: 2, color: KColors.clrDarkBlue)),
         child: TextField(
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.left,

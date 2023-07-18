@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
 import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
-
 import '../../../model/prouct_model.dart/product_model.dart';
 
 class AddProductToBillNotif extends ChangeNotifier {
@@ -15,6 +14,7 @@ class AddProductToBillNotif extends ChangeNotifier {
   String validationError='';
   Map<String,BillProductModel>customerBillData={};
   List<String>customerBillDataKeys=[];
+
   // Future<void> generateInvoicePDF(BuildContext context) async {
   //   final pdf = pw.Document();
 

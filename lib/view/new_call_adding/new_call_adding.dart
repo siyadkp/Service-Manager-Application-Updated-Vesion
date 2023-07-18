@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
@@ -9,7 +7,9 @@ import 'package:service_manager/core/colors.dart';
 import 'package:service_manager/core/sizing.dart';
 import 'package:service_manager/view/widget/dropdown_button_widget/dropdown_button_widget.dart';
 import '../../controller/provider/loading/loading.dart';
+import '../../core/cosnt_values.dart';
 import '../../core/naming.dart';
+import '../../core/text.dart';
 import '../widget/dropdown_textformfield/dropdown_textformfield.dart';
 import '../widget/textformfiewld.dart';
 
@@ -25,258 +25,229 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Consumer<AddNewServiceCallNotifier>(
+        child:
+         Consumer<AddNewServiceCallNotifier>(
             builder: (context, addNewCallNotifier, child) {
-          return Column(
+          return ListView(
+            shrinkWrap: true,
             children: [
-              ClipPath(
-                clipper: BottomCircleClipper(),
-                child: Container(
-                  height: 100,
-                  width:double.infinity,
-                  color: KColors.clrDarkBlue,
+              Stack(children: [
+                AppBarWidget(text: "Call Registration"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 310, top: 110),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Type',
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropdownButtonWidget(
+                              list: ['Carry In', 'On Site'],
+                              status: 'Carry In',
+                              width: 80),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(top: 0, left: 17),
+              ]),
+              Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Column(
+                  DropdownTextFormField(
+                    screenName: allScreenNames[2],
+                    suggestion:
+                        Provider.of<AddCustomerNotifier>(context, listen: false)
+                            .customerKeys,
+                    text: 'Customer',
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TopTextTextFormFieldWidget(
+                        height: 40,
+                        width: 160,
+                        text: 'Product Category',
+                        screenName: allScreenNames[2],
+                        paddingtop: 0,
+                        controllerIndex: 1,
+                        controllerObj: addNewCallNotifier.productCategory,
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Consumer<DatePickerNotifier>(
+                          builder: (context, datePickerNotifier, _) {
+                        return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Type',
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 7, left: 5, top: 4),
+                              child: Text(
+                                'Date',
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            DropdownButtonWidget(
-                                list: ['Carry In', 'On Site'],
-                                status: 'Carry In',
-                                width: 80),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DropdownTextFormField(
-                        screenName: allScreenNames[2],
-                        suggetion: Provider.of<AddCustomerNotifier>(context,
-                                listen: false)
-                            .customerKeys,
-                      ),
-                      Text(
-                        addNewCallNotifier.validationError[0],
-                        style: const TextStyle(color: Colors.red, fontSize: 11),
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TopTextTextFormFieldWidget(
+                            GestureDetector(
+                              onTap: () {
+                                datePickerNotifier.datePicker(context);
+                              },
+                              child: Container(
+                                width: 160,
                                 height: 40,
-                                width: 180,
-                                text: 'Product Category',
-                                screenName: allScreenNames[2],
-                                controllerIndex: 1,
-                                fontsize: 17,
-                                controllerObj:
-                                    addNewCallNotifier.productCategory,
-                              ),
-                              Text(
-                                addNewCallNotifier.validationError[1],
-                                style: const TextStyle(
-                                    color: Colors.red, fontSize: 11),
-                              ),
-                            ],
-                          ),
-                          kWidth10,
-                          Consumer<DatePickerNotifier>(
-                              builder: (context, datePickerNotifier, child) {
-                            return Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Date',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      datePickerNotifier.datePicker(context);
-                                    },
-                                    child: Container(
-                                      width: 180,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(7),
-                                        border:
-                                            Border.all(color: KColors.clrGrey),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              datePickerNotifier.formattedDate!,
-                                              style: TextStyle(fontSize: 17),
-                                            ),
-                                          ),
-                                        ],
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                  border: Border.all(color: KColors.clrGrey),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        datePickerNotifier.formattedDate!,
+                                        style: TextStyle(fontSize: 17),
                                       ),
                                     ),
-                                  ),
-                                ]);
-                          }),
-                        ],
-                      ),
-                      TopTextTextFormFieldWidget(
-                        height: 50,
-                        width: 370,
-                        text: 'Product',
-                        screenName: allScreenNames[2],
-                        controllerIndex: 3,
-                        controllerObj: addNewCallNotifier.product,
-                      ),
-                      Text(
-                        addNewCallNotifier.validationError[3],
-                        style: const TextStyle(color: Colors.red, fontSize: 11),
-                      ),
-                      TopTextTextFormFieldWidget(
-                        height: 50,
-                        width: 370,
-                        text: 'Complaint',
-                        screenName: allScreenNames[2],
-                        controllerIndex: 4,
-                        controllerObj: addNewCallNotifier.complaint,
-                      ),
-                      Text(
-                        addNewCallNotifier.validationError[4],
-                        style: const TextStyle(color: Colors.red, fontSize: 11),
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              TopTextTextFormFieldWidget(
-                                height: 50,
-                                width: 320,
-                                text: 'Serail No',
-                                screenName: allScreenNames[2],
-                                controllerIndex: 5,
-                                controllerObj: addNewCallNotifier.serialNumber,
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              right: 15,
-                              top: 45,
-                            ),
-                            child: IconButton(
-                                onPressed: () {
-                                  addNewCallNotifier.scanBarcode();
-                                },
-                                icon: Icon(Icons.camera_alt_sharp)),
-                          )
-                        ],
-                      ),
-                      TopTextTextFormFieldWidget(
-                        height: 200,
-                        width: 370,
-                        text: 'Description :',
-                        maxLines: 7,
-                        condition: true,
-                        screenName: allScreenNames[2],
-                        controllerIndex: 6,
-                        controllerObj: addNewCallNotifier.description,
-                      ),
-                      kHeight20,
-                      Consumer<LoadingModel>(
-                        builder: (context, loadingModel, child) {
-                          return Center(
-                            child: Container(
-                              width: 130,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      KColors.clrDarkBlue, // Background color
+                                  ],
                                 ),
-                                onPressed: () async {
-                                  bool condition = false;
-                                  condition =
-                                      Provider.of<AddNewServiceCallNotifier>(
-                                              context,
-                                              listen: false)
-                                          .alltextformfieldValidation();
-                                  if (condition) {
-                                    loadingModel.startLoading();
-                                    await Provider.of<AddNewServiceCallNotifier>(
-                                            context,
-                                            listen: false)
-                                        .addNewCallToFirebase(
-                                            customerName: addNewCallNotifier
-                                                .customer.text,
-                                            type: dropdownValue!,
-                                            productCategory: addNewCallNotifier
-                                                .productCategory.text,
-                                            date:
-                                                Provider.of<DatePickerNotifier>(
-                                                        context,
-                                                        listen: false)
-                                                    .formattedDate!,
-                                            product:
-                                                addNewCallNotifier.product.text,
-                                            complaint: addNewCallNotifier
-                                                .complaint.text,
-                                            serialNumber: addNewCallNotifier
-                                                .serialNumber.text,
-                                            description: addNewCallNotifier
-                                                .description.text);
-                                    loadingModel.stopLoading();
-                                    final snackBar = SnackBar(
-                                      content: Text('New Call Added'),
-                                      duration: Duration(seconds: 3),
-                                      backgroundColor: KColors.clrGreen,
-                                    );
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(snackBar);
-                                  }
-                                },
-                                child: loadingModel.isLoading
-                                    ? Center(
-                                        child: SizedBox(
-                                            height: 20,
-                                            width: 20,
-                                            child: CircularProgressIndicator(
-                                                color: Colors.white,
-                                                strokeWidth: 3)))
-                                    : Text('Add New Call'),
                               ),
                             ),
-                          );
-                        },
-                      ),
-                      kHeight20
+                          ],
+                        );
+                      }),
                     ],
-                  )
+                  ),
+                  TopTextTextFormFieldWidget(
+                    height: 50,
+                    width: 350,
+                    text: 'Product',
+                    screenName: allScreenNames[2],
+                    controllerIndex: 3,
+                    controllerObj: addNewCallNotifier.product,
+                  ),
+                  TopTextTextFormFieldWidget(
+                    height: 50,
+                    width: 350,
+                    text: 'Complaint',
+                    screenName: allScreenNames[2],
+                    controllerIndex: 4,
+                    controllerObj: addNewCallNotifier.complaint,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TopTextTextFormFieldWidget(
+                        height: 50,
+                        width: 305,
+                        text: 'Serail No',
+                        screenName: allScreenNames[2],
+                        controllerIndex: 5,
+                        controllerObj: addNewCallNotifier.serialNumber,
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 42,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                addNewCallNotifier.scanBarcode();
+                              },
+                              icon: Icon(Icons.camera_alt_sharp)),
+                        ],
+                      )
+                    ],
+                  ),
+                  TopTextTextFormFieldWidget(
+                    height: 200,
+                    width: 350,
+                    text: 'Description :',
+                    maxLines: 7,
+                    paddingRight: 4,
+                    condition: true,
+                    screenName: allScreenNames[2],
+                    controllerIndex: 6,
+                    controllerObj: addNewCallNotifier.description,
+                  ),
+                  kHeight20,
+                  ErrorTextWidget(errorText:addNewCallNotifier.validationError),
+                  Consumer<LoadingModel>(
+                    builder: (context, loadingModel, child) {
+                      return Center(
+                        child: Container(
+                          width: 130,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  KColors.clrDarkBlue, // Background color
+                            ),
+                            onPressed: () async {
+                              bool condition = false;
+                              condition =
+                                  Provider.of<AddNewServiceCallNotifier>(
+                                          context,
+                                          listen: false)
+                                      .alltextformfieldValidation();
+                              if (condition) {
+                                loadingModel.startLoading();
+                                await Provider.of<AddNewServiceCallNotifier>(
+                                        context,
+                                        listen: false)
+                                    .addNewCallToFirebase(
+                                        customerName:
+                                            addNewCallNotifier.customer.text,
+                                        type: dropdownValue!,
+                                        productCategory: addNewCallNotifier
+                                            .productCategory.text,
+                                        date: Provider.of<DatePickerNotifier>(
+                                                context,
+                                                listen: false)
+                                            .formattedDate!,
+                                        product:
+                                            addNewCallNotifier.product.text,
+                                        complaint:
+                                            addNewCallNotifier.complaint.text,
+                                        serialNumber: addNewCallNotifier
+                                            .serialNumber.text,
+                                        description: addNewCallNotifier
+                                            .description.text);
+                                loadingModel.stopLoading();
+                                final snackBar = SnackBar(
+                                  content: Text('New Call Added'),
+                                  duration: Duration(seconds: 3),
+                                  backgroundColor: KColors.clrGreen,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            },
+                            child: loadingModel.isLoading
+                                ? Center(
+                                    child: SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                            strokeWidth: 3)))
+                                : Text('Add New Call'),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  kHeight20
                 ],
-              ),
+              )
             ],
           );
         }),
@@ -288,19 +259,13 @@ class _ScreenAddNewCallState extends State<ScreenAddNewCall> {
 class BottomCircleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path();
-    final radius = size.width * 0.9; // Adjust the radius as needed
+    double height = size.height;
+    double width = size.width;
+    var path = Path();
+    path.lineTo(0, height - 50);
+    path.quadraticBezierTo(width / 2, height, width, height - 50);
+    path.lineTo(width, 0);
 
-    path.moveTo(0, 0);
-    path.lineTo(0, 0);
-    path.lineTo(0, 0);
-    path.arcTo(
-      Rect.fromCircle(center: Offset(size.width / 2, size.height - radius), radius: radius),
-      0, // Start angle in radians
-      pi, // Sweep angle in radians (changed to pi for a half-circle shape)
-      false,
-    );
-    path.lineTo(0, radius);
     path.close();
 
     return path;
@@ -308,6 +273,6 @@ class BottomCircleClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
+    return true;
   }
 }

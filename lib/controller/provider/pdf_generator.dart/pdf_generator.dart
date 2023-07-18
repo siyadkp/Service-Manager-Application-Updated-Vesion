@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pdf/widgets.dart';
 import 'package:open_file/open_file.dart';
 import 'package:service_manager/model/prouct_model.dart/product_model.dart';
 
@@ -84,7 +83,7 @@ class PdfGenerator {
                     style: pw.TextStyle(fontSize: 16),
                   ),
                   pw.Text(
-                     '₹$discount',
+                     "₹$discount",
                     style: pw.TextStyle(fontSize: 16),
                   ),
                 ],
@@ -100,7 +99,7 @@ class PdfGenerator {
                     ),
                   ),
                   pw.Text(
-                    '₹$totalAmount',
+                    "₹$totalAmount",
                     style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,

@@ -13,23 +13,18 @@ class AddCustomerNotifier with ChangeNotifier {
   TextEditingController billingAddress = TextEditingController();
   CollectionReference customerCollection =
       FirebaseFirestore.instance.collection('customer_collection');
-  List<String> validationError = [
-    '',
-    '',
-    '',
-    '',
-    '',
-  ];
+  String validationError = "";
   List<String> customerKeys = [];
   Map<String, QueryDocumentSnapshot> customerDatas = {};
 
   getCustomerDataFormFirebase() async {
-    List<QueryDocumentSnapshot> queryDocumentSnapshot = [];
+    // List<QueryDocumentSnapshot> queryDocumentSnapshot = [];
     try {
-      queryDocumentSnapshot.clear();
+      // queryDocumentSnapshot.clear();
       customerDatas.clear();
+      customerKeys.clear();
       QuerySnapshot? customerData = await customerCollection.get();
-      queryDocumentSnapshot.addAll(customerData.docs);
+      // queryDocumentSnapshot.addAll(customerData.docs);
       for (QueryDocumentSnapshot doc in customerData.docs) {
         customerDatas[doc.get('firstName')] = doc;
         customerViewScreenSearchNotifierObject.insert(doc.get('firstName'));
@@ -44,8 +39,7 @@ class AddCustomerNotifier with ChangeNotifier {
   }
 
   addCustomerToFirebase(
-      {
-      required String gender,  
+      {required String gender,
       required String firstName,
       required String lastName,
       required String phone,
@@ -54,7 +48,7 @@ class AddCustomerNotifier with ChangeNotifier {
       required String address,
       required String billingAddress}) async {
     Map<String, String> customerMap = {
-      'gender':gender,
+      'gender': gender,
       'firstName': firstName,
       'lastName': lastName,
       'phone': phone,
@@ -69,43 +63,31 @@ class AddCustomerNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  textformfieldValidation(String value, int index) {
-    if (value.isEmpty) {
-      validationError[index] = 'This value is required';
-    } else {
-      validationError[index] = '';
-    }
-    notifyListeners();
-  }
+  // textformfieldValidation(String value, int index) {
+  //   if (value.isEmpty) {
+  //     validationError[index] = 'This value is required';
+  //   } else {
+  //     validationError[index] = '';
+  //   }
+  //   notifyListeners();
+  // }
 
   bool alltextformfieldValidation() {
     if (firstName.text.isEmpty) {
-      validationError[0] = 'This value is required';
+      validationError = 'FirstName field is required';
+    } else if (lastName.text.isEmpty) {
+      validationError = 'LastName field is required';
+    } else if (phone.text.isEmpty) {
+      validationError = 'Phone field is required';
+    } else if (place.text.isEmpty) {
+      validationError = 'Place field is required';
+    } else if (address.text.isEmpty) {
+      validationError = 'Address field is required';
     } else {
-      validationError[0] = '';
-    }
-    if (lastName.text.isEmpty) {
-      validationError[1] = 'This value is required';
-    } else {
-      validationError[1] = '';
-    }
-    if (phone.text.isEmpty) {
-      validationError[2] = 'This value is required';
-    } else {
-      validationError[2] = '';
-    }
-    if (place.text.isEmpty) {
-      validationError[3] = 'This value is required';
-    } else {
-      validationError[3] = '';
-    }
-    if (address.text.isEmpty) {
-      validationError[4] = 'This value is required';
-    } else {
-      validationError[4] = '';
+      validationError = "";
     }
 
-    bool condition = validationError.contains('This value is required');
+    bool condition = validationError.isNotEmpty;
     if (condition) {
       notifyListeners();
       return false;

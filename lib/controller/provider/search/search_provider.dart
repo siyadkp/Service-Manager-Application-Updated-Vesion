@@ -52,8 +52,6 @@ class TrieNotifier with ChangeNotifier {
 
   searchHelper(Map<String, QueryDocumentSnapshot> Datas, List<String> keys,
       String value, TrieNotifier trieNotifier) {
-    print(Datas.length);
-    print(keys.length);
     trieNotifier.collectionOfDatas = {};
     trieNotifier.collectionOfDatsKeys = [];
     search(value, trieNotifier.root);

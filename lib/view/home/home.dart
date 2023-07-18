@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:service_manager/core/colors.dart';
+import 'package:provider/provider.dart';
+import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/core/images.dart';
 import 'package:service_manager/core/naming.dart';
 import 'package:service_manager/view/home/widget/service_card_widget.dart';
@@ -10,12 +11,14 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AddNewServiceCallNotifier addNewServiceCallNotifier =
+        Provider.of<AddNewServiceCallNotifier>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     double height = 40;
     return Scaffold(
-      backgroundColor:  const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       // KColors.ScaffoldBackgrountColor,
-    
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -23,12 +26,10 @@ class ScreenHome extends StatelessWidget {
               width: double.infinity,
               height: size.height / 3,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
-                    const Color.fromRGBO(78, 158, 255, 0.769),
-           
-
-              Color.fromRGBO(22, 105, 207, 1)
+                    Color.fromRGBO(78, 158, 255, 0.769),
+                    Color.fromRGBO(22, 105, 207, 1)
                   ],
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
@@ -59,73 +60,74 @@ class ScreenHome extends StatelessWidget {
                           backgroundImage: AssetImage('asset/user.jpeg'),
                         )),
                   )),
-                  const SizedBox(height: 50,),
-                   const Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                     children: [
-                       Column(
-                         children: [
-                           Text(
-                             'Complete',
-                             style: TextStyle(
-                               fontSize: 19,
-                               color: Colors.white,
-                               fontWeight: FontWeight.w500,
-                             ),
-                           ),
-                           SizedBox(
-                             height: 10,
-                           ),
-                           SizedBox(
-                             width: 145,
-                             child: Center(
-                               child: Text(
-                                 '17566',
-                                 style: TextStyle(
-                                   fontSize: 28,
-                                   color: Colors.black54,
-                                   fontWeight: FontWeight.w500,
-                                 ),
-                               ),
-                             ),
-                           ),
-                         ],
-                       ),
-                       Column(
-                         children: [
-                           Text(
-                             'Pending',
-                             style: TextStyle(
-                               fontSize: 19,
-                               color: Colors.white,
-                               fontWeight: FontWeight.w500,
-                             ),
-                           ),
-                           SizedBox(
-                             height: 10,
-                           ),
-                           SizedBox(
-                             width: 145,
-                             child: Center(
-                               child: Text(
-                                 '17566',
-                                 style: TextStyle(
-                                   fontSize: 28,
-                                   color: Colors.black54,
-                                   fontWeight: FontWeight.w500,
-                                 ),
-                               ),
-                             ),
-                           ),
-                         ],
-                       ),
-                     ],
-                   ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          const Text(
+                            'Complete',
+                            style: TextStyle(
+                              fontSize: 19,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                addNewServiceCallNotifier.complete.toString(),
+                                style: const TextStyle(
+                                  fontSize: 28,
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text(
+                            'Pending',
+                            style: TextStyle(
+                              fontSize: 19,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                addNewServiceCallNotifier.pending.toString(),
+                                style: const TextStyle(
+                                  fontSize: 28,
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
             HomeServiceCardsSection(size: size),
-           
           ],
         ),
       ),
@@ -157,8 +159,7 @@ class HomeServiceCardsSection extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   itemCount: 5,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 230,
                     crossAxisCount: 2,
                     mainAxisSpacing: 7,
@@ -176,7 +177,9 @@ class HomeServiceCardsSection extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 10,)
+              const SizedBox(
+                height: 10,
+              )
             ],
           ),
         ],

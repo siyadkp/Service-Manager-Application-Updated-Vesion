@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../search/const_search_objects.dart';
@@ -19,6 +20,7 @@ class AdminAddProductNotifier with ChangeNotifier {
   TextEditingController totalPrice = TextEditingController();
 
   List<String> validationError = ['', '', '', '', '', ''];
+  String imageUri='';
 
   addImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
@@ -59,6 +61,7 @@ class AdminAddProductNotifier with ChangeNotifier {
     required String retailPrice,
     required String totalPrice,
   }) async {
+    await cloudAdd(photo!);
     Map<String, String> productMap = {
       'productName': productName,
       'serialNumber': serialNumber,
@@ -66,14 +69,25 @@ class AdminAddProductNotifier with ChangeNotifier {
       'wholesalePrice': wholesalePrice,
       'retailPrice': retailPrice,
       'totalPrice': totalPrice,
-      'photo': photo?.path ?? ''
+      'photo': imageUri
     };
     await usersCollection.add(productMap);
     await getProductDataFormFirebase();
     controllerClear();
     notifyListeners();
   }
+Future<void> cloudAdd(File file) async {
+    final Reference storageref = FirebaseStorage.instance
+        .ref()
+        .child('images/${DateTime.now().millisecondsSinceEpoch}');
 
+    final UploadTask uploadTask = storageref.putFile(file);
+    TaskSnapshot snap = await uploadTask;
+
+    final String downloadUrl = await snap.ref.getDownloadURL();
+    imageUri = downloadUrl;
+    notifyListeners();
+  }
   totalPriceCalculating() {
     if (wholesalePrice.text.isNotEmpty && qty.text.isNotEmpty) {
       totalPrice.text =

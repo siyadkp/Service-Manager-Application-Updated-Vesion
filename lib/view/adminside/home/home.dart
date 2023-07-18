@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
 import 'package:service_manager/view/adminside/addproduct/add_product.dart';
-
 import '../../../controller/provider/login/login_page_provider.dart';
 import '../../login/sign_in.dart';
 

@@ -37,8 +37,7 @@ colorvalue=3;
       shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       elevation: 3,
       child: Container(
-        height: 130,
-        width: double.infinity,
+        height: 110,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         child:  Row(
           children: [

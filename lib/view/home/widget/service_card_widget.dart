@@ -30,7 +30,7 @@ class ServiceCardWidget extends StatelessWidget {
           builder: (context) {
             if (index == 0) {
               Provider.of<AddNewServiceCallNotifier>(context, listen: false)
-                  .validationError = ['', '', '', '', ''];
+                  .validationError = '';
 
               return const ScreenAddNewCall();
             } else if (index == 1) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_product_to_bill_provider/add_product_to_bill_provider.dart';
 import 'package:service_manager/core/colors.dart';
@@ -37,12 +38,9 @@ class RightTextTextFormFieldWidget extends StatelessWidget {
       padding: EdgeInsets.only(top: paddingtop),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 5, right: 10),
-            child: Text(text,
-                style:
-                    TextStyle(fontWeight: FontWeight.w500, fontSize: fontsize)),
-          ),
+          Text(text,
+              style:
+                  GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: fontsize)),
           Container(
             width: width,
             height: height,

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.service_manager.app-mergeDebugResources-42:/values-v26/values-v26.xml",
+            "outputFile": "com.example.service_manager.app-mergeDebugResources-40:/values-v26/values-v26.xml",
             "map": [
                 {
                     "source": "/home/siyad/.gradle/caches/transforms-3/5f0ad372327de02c707f7430e51961d6/transformed/appcompat-1.6.1/res/values-v26/values-v26.xml",

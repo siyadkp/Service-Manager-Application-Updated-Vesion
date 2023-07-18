@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
@@ -13,13 +12,11 @@ import 'package:service_manager/controller/provider/login/login_page_provider.da
 import 'package:service_manager/controller/provider/register/register_page_provider.dart';
 import 'package:service_manager/controller/provider/search/search_provider.dart';
 import 'package:service_manager/controller/provider/service_call_status_updation/service_call_status_updation.dart';
-import 'package:service_manager/view/sample.dart';
 import 'package:service_manager/view/splash/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FlutterDownloader.initialize();
   runApp(const MyApp());
 }
 

@@ -20,7 +20,7 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
       FirebaseFirestore.instance.collection('call_collection');
 
   bool isWorked = true;
-  List<String> validationError = ['', '', '', '', '', '', ''];
+  String validationError = '';
   Map<String, QueryDocumentSnapshot> collectionOfDatas =
       customerViewScreenSearchNotifierObject.collectionOfDatas;
   Map<String, QueryDocumentSnapshot> callDatas = {};
@@ -35,7 +35,7 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
 //       serviceCallViewScreenSearchNotifierObject.collectionOfDatsKeys=[];
 //      if(isWorked){
 //  DocumentReference? jobNumberDoc =  jobNumber.doc("KktKIyTkv43TOmMZjF3i");
-//      DocumentSnapshot snapshot = await jobNumberDoc.get();
+//      DocumentSnapshot snapshot = await jobNumbenavigatToUpdateStatusPagerDoc.get();
 //      _currentjobnumber=snapshot.get('currentjobnumber');
 //      isWorked=false;
 //      }
@@ -82,65 +82,47 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  textformfieldValidation(String value, int index) {
-    print(collectionOfDatas.containsKey(value));
-    if (index == 0) {
-      if (value.isEmpty) {
-        validationError[index] = 'This value is required';
-      } else if (!collectionOfDatas.containsKey(value)) {
-        validationError[index] = 'Unown Customer';
-      } else {
-        validationError[index] = '';
-      }
-      notifyListeners();
-    } else {
-      if (value.isEmpty) {
-        validationError[index] = 'This value is required';
-      } else {
-        validationError[index] = '';
-      }
-      notifyListeners();
-    }
-  }
+  // textformfieldValidation(String value, int index) {
+  //   print(collectionOfDatas.containsKey(value));
+  //   if (index == 0) {
+  //     if (value.isEmpty) {
+  //       validationError[index] = 'This value is required';
+  //     } else if (!collectionOfDatas.containsKey(value)) {
+  //       validationError[index] = 'Unown Customer';
+  //     } else {
+  //       validationError[index] = '';
+  //     }
+  //     notifyListeners();
+  //   } else {
+  //     if (value.isEmpty) {
+  //       validationError[index] = 'This value is required';
+  //     } else {
+  //       validationError[index] = '';
+  //     }
+  //     notifyListeners();
+  //   }
+  // }
 
   bool alltextformfieldValidation() {
-    if (customer.text.isEmpty) {
-      validationError[0] = 'This value is required';
-    } else {
-      validationError[0] = '';
-    }
     if (productCategory.text.isEmpty) {
-      validationError[1] = 'This value is required';
-    } else {
-      validationError[1] = '';
+      validationError = "ProductCategory field is required";
     }
-    if (updatedDate.text.isEmpty) {
-      validationError[2] = 'This value is required';
+   else if (updatedDate.text.isEmpty) {
+      validationError = "Date field is required";
+    } 
+   else if (product.text.isEmpty) {
+      validationError = "Product field is required";
+    } 
+   else if (service.text.isEmpty) {
+      validationError = "Service field is required";
+    } 
+   else if (amount.text.isEmpty) {
+      validationError = "Please enter Amount";
     } else {
-      validationError[2] = '';
-    }
-    if (product.text.isEmpty) {
-      validationError[3] = 'This value is required';
-    } else {
-      validationError[3] = '';
-    }
-    if (service.text.isEmpty) {
-      validationError[4] = 'This value is required';
-    } else {
-      validationError[4] = '';
-    }
-    if (description.text.isEmpty) {
-      validationError[5] = 'This value is required';
-    } else {
-      validationError[5] = '';
-    }
-    if (amount.text.isEmpty) {
-      validationError[6] = 'This value is required';
-    } else {
-      validationError[6] = '';
+      validationError = "";
     }
 
-    bool condition = validationError.contains('This value is required');
+    bool condition = validationError.isNotEmpty;
     if (condition) {
       notifyListeners();
       return false;

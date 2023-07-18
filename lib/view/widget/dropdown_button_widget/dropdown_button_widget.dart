@@ -9,10 +9,11 @@ String? dropdownValue;
 
 class DropdownButtonWidget extends StatefulWidget {
   DropdownButtonWidget(
-      {super.key, required this.list, this.width = 73, required this.status});
+      {super.key, required this.list, this.width = 73,this.height=35, required this.status});
   List<String> list;
   String status;
   double width;
+  double height;
 
   @override
   State<DropdownButtonWidget> createState() => _DropdownButtonWidgetState();
@@ -38,6 +39,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.width,
+      height: widget.height,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
           border: Border.all(color: KColors.clrGrey)),

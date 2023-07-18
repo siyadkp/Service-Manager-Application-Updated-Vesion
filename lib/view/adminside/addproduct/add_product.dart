@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/loading/loading.dart';
@@ -21,10 +20,11 @@ class ScreenAdminAddProduct extends StatelessWidget {
         backgroundColor: Colors.grey[300],
         body: SingleChildScrollView(
           child: Column(
+       
             children: [
               Center(
                 child: SizedBox(
-                  height: size.height * 1.05,
+                  height: size.height * 1.1,
                   width: size.width / 1.03,
                   child: Card(
                     child: Column(

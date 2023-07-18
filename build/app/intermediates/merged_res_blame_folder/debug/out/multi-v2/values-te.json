@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.service_manager.app-mergeDebugResources-42:/values-te/values-te.xml",
+            "outputFile": "com.example.service_manager.app-mergeDebugResources-40:/values-te/values-te.xml",
             "map": [
                 {
                     "source": "/home/siyad/.gradle/caches/transforms-3/f253648b0be692c533908993735bbd2e/transformed/jetified-play-services-base-18.0.1/res/values-te/values.xml",

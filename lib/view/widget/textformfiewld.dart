@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
@@ -17,6 +18,7 @@ class TopTextTextFormFieldWidget extends StatefulWidget {
       this.controllerIndex,
       this.maxLines = 1,
       this.paddingtop = 15,
+      this.paddingRight=0,
       this.fontsize = 15,
       this.condition = false,
       this.hintText = '',
@@ -24,6 +26,7 @@ class TopTextTextFormFieldWidget extends StatefulWidget {
   double width;
   double height;
   double paddingtop;
+  double paddingRight;
   double fontsize;
   int maxLines;
   int? controllerIndex;
@@ -48,20 +51,21 @@ class _TopTextTextFormFieldWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: widget.paddingtop),
+      padding: EdgeInsets.only(top: widget.paddingtop,right: widget.paddingRight),
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                left: 10,
+                left: 5,
                 bottom: 5,
               ),
               child: Text(
                 widget.text,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500, fontSize: widget.fontsize),
               ),
             ),
@@ -83,10 +87,6 @@ class _TopTextTextFormFieldWidgetState
                       onChanged: (value) {
                         if (widget.screenName == allScreenNames[1] &&
                             widget.controllerIndex != null) {
-                          Provider.of<AddCustomerNotifier>(context,
-                                  listen: false)
-                              .textformfieldValidation(
-                                  value, widget.controllerIndex!);
                         }
                       },
                     )
@@ -109,19 +109,7 @@ class _TopTextTextFormFieldWidgetState
                                       listen: false)
                                   .totalPriceCalculating();
                             }
-                          } else if (widget.screenName == allScreenNames[1] &&
-                              widget.controllerIndex != null) {
-                            Provider.of<AddCustomerNotifier>(context,
-                                    listen: false)
-                                .textformfieldValidation(
-                                    value, widget.controllerIndex!);
                           } 
-                          else if(widget.screenName == allScreenNames[2]&&widget.controllerIndex! < 5){
-                             Provider.of<AddNewServiceCallNotifier>(context,
-                                    listen: false)
-                                .textformfieldValidation(
-                                    value, widget.controllerIndex!);
-                          }
                         },
                       ),
                     ),

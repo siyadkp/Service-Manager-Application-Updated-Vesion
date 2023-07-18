@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.service_manager.app-mergeDebugResources-42:/values-fa/values-fa.xml",
+            "outputFile": "com.example.service_manager.app-mergeDebugResources-40:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "/home/siyad/.gradle/caches/transforms-3/6a31700874d8768c1a72a6f7d5d446cb/transformed/material-1.3.0/res/values-fa/values-fa.xml",

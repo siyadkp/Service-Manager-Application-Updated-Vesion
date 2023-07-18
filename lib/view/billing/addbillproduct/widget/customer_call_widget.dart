@@ -14,7 +14,7 @@ class CustomerCallWidget extends StatefulWidget {
 }
 
 class _CustomerCallWidgetState extends State<CustomerCallWidget> {
-  bool values = false;
+  bool isAddedToBill = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +22,15 @@ class _CustomerCallWidgetState extends State<CustomerCallWidget> {
         Provider.of<AddProductToBillNotif>(context, listen: false);
     return Container(
       height: 100,
-      width: 390,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+      width: 370,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 3,
         child: Row(
           children: [
             Checkbox(
-              value: values,
+              value: isAddedToBill,
               onChanged: (value) => setState(() {
                 if (value!) {
                   BillProductModel billProduct = BillProductModel(
@@ -38,7 +38,7 @@ class _CustomerCallWidgetState extends State<CustomerCallWidget> {
                     qty: '1',
                     discount:'0',
                     amount: widget.callData?.get('amount') ,
-                    totalAmount: widget.callData?.get('amount'),
+                    totalAmount: widget.callData?.get('amount'), key: widget.callData?.get('jobnumber') ,
                   );
                   addProductToBillNotifObj.addTobill(context,
                       billProduct, widget.callData?.get('jobnumber'));
@@ -46,14 +46,14 @@ class _CustomerCallWidgetState extends State<CustomerCallWidget> {
                   addProductToBillNotifObj
                       .removeTobill(context,widget.callData?.get('jobnumber'));
                 }
-                values = value;
+                isAddedToBill = value;
               },),
             ),
             Text(widget.callData?.get('jobnumber'),
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             kWidth20,
             SizedBox(
-              width: 206,
+              width: 194,
               // color: Colors.red,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,28 +61,28 @@ class _CustomerCallWidgetState extends State<CustomerCallWidget> {
                 children: [
                   Text(
                     widget.callData?.get('customer'),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   Text(
                     widget.callData?.get('product'),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   Text(
                     widget.callData?.get('date'),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
             ),
             Container(
-              width: 72.4,
+              width: 80,
               height: double.infinity,
               decoration: BoxDecoration(
-                  color: KColors.statusColor[3],
-                  borderRadius: BorderRadius.only(
+                  color: KColors.statusColor[2],
+                  borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(15),
                       bottomRight: Radius.circular(15))),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'complete',
                   style: TextStyle(

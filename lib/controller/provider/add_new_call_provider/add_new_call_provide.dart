@@ -12,18 +12,14 @@ class AddNewServiceCallNotifier with ChangeNotifier {
   TextEditingController serialNumber = TextEditingController();
   TextEditingController description = TextEditingController();
   String? status;
+  int pending=0;
+  int complete=0;
   CollectionReference callCollection =
       FirebaseFirestore.instance.collection('call_collection');
   CollectionReference jobNumber =
       FirebaseFirestore.instance.collection('job_number');
   bool isWorked = true;
-  List<String> validationError = [
-    '',
-    '',
-    '',
-    '',
-    '',
-  ];
+  String validationError = "";
   Map<String, Map<String, QueryDocumentSnapshot>> userBasedCallDatas = {};
   Map<String, QueryDocumentSnapshot> collectionOfDatas =
       customerViewScreenSearchNotifierObject.collectionOfDatas;
@@ -45,8 +41,12 @@ class AddNewServiceCallNotifier with ChangeNotifier {
         if (doc.get('status') == "Complete") {
           userBasedCallDatas.putIfAbsent(customer, () => {});
           userBasedCallDatas[customer]?.putIfAbsent(docId, () => doc);
+          complete++;
+        }else if(doc.get('status') == "Pending"){
+          pending++;
         }
       }
+      
       callDataKeys.addAll(callDatas.keys);
 
       if (isWorked) {
@@ -82,8 +82,7 @@ class AddNewServiceCallNotifier with ChangeNotifier {
       'jobnumber': _currentjobnumber!,
       'status': 'Pending',
       'type': type,
-      'customer':
-          customerName, // Use the parameter value instead of customer.text
+      'customer': customerName,
       'productCategory': productCategory,
       'date': date,
       'updatedDate': '',
@@ -103,49 +102,43 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  textformfieldValidation(String value, int index) {
-    if (index == 0) {
-      if (value.isEmpty) {
-        validationError[index] = 'This value is required';
-      } else if (!collectionOfDatas.containsKey(value)) {
-        validationError[index] = 'Unown Customer';
-      } else {
-        validationError[index] = '';
-      }
-      notifyListeners();
-    } else {
-      if (value.isEmpty) {
-        validationError[index] = 'This value is required';
-      } else {
-        validationError[index] = '';
-      }
-      notifyListeners();
-    }
-  }
+  // textformfieldValidation(String value, int index) {
+  //   if (index == 0) {
+  //     if (value.isEmpty) {
+  //       validationError[index] = 'This value is required';
+  //     } else if (!collectionOfDatas.containsKey(value)) {
+  //       validationError[index] = 'Unown Customer';
+  //     } else {
+  //       validationError[index] = '';
+  //     }
+  //     notifyListeners();
+  //   } else {
+  //     if (value.isEmpty) {
+  //       validationError[index] = 'This value is required';
+  //     } else {
+  //       validationError[index] = '';
+  //     }
+  //     notifyListeners();
+  //   }
+  // }
 
   bool alltextformfieldValidation() {
     if (customer.text.isEmpty) {
-      validationError[0] = 'This value is required';
+      validationError = "Customer field is required";
+    }else if (!collectionOfDatas.containsKey(customer.text)) {
+       validationError  = 'This Customer not valied';
+      }
+     else if (productCategory.text.isEmpty) {
+      validationError = "ProductCategory field is required";
+    } else if (product.text.isEmpty) {
+      validationError = "Product field is required";
+    } else if (complaint.text.isEmpty) {
+      validationError = "Complaint field is required";
     } else {
-      validationError[0] = '';
-    }
-    if (productCategory.text.isEmpty) {
-      validationError[1] = 'This value is required';
-    } else {
-      validationError[1] = '';
-    }
-    if (product.text.isEmpty) {
-      validationError[3] = 'This value is required';
-    } else {
-      validationError[3] = '';
-    }
-    if (complaint.text.isEmpty) {
-      validationError[4] = 'This value is required';
-    } else {
-      validationError[4] = '';
+      validationError = "";
     }
 
-    bool condition = validationError.contains('This value is required');
+    bool condition = validationError.isNotEmpty;
     if (condition) {
       notifyListeners();
       return false;

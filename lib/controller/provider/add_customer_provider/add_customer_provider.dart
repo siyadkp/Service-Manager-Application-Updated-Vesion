@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../search/const_search_objects.dart';
 
 class AddCustomerNotifier with ChangeNotifier {
+  String gender = "";
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -36,6 +37,7 @@ class AddCustomerNotifier with ChangeNotifier {
     } on FirebaseException catch (e) {
       print(e);
     }
+    notifyListeners();
   }
 
   addCustomerToFirebase(
@@ -63,14 +65,44 @@ class AddCustomerNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  // textformfieldValidation(String value, int index) {
-  //   if (value.isEmpty) {
-  //     validationError[index] = 'This value is required';
-  //   } else {
-  //     validationError[index] = '';
-  //   }
-  //   notifyListeners();
-  // }
+  updateCustomerData(
+      {
+    
+        required String key,
+      required String gender,
+      required String firstName,
+      required String lastName,
+      required String phone,
+      required String phone1,
+      required String place,
+      required String address,
+      required String billingAddress}) async {
+    DocumentReference docRef = customerCollection.doc(key);
+
+    await docRef.update({
+      'gender': gender,
+      'firstName': firstName,
+      'lastName': lastName,
+      'phone': phone,
+      'phone1': phone1,
+      'place': place,
+      'address': address,
+      'billingAddress': billingAddress,
+    });
+   
+   await getCustomerDataFormFirebase();
+  }
+
+  customerDataLoadingForEditingScreen(QueryDocumentSnapshot customerData) {
+    gender = customerData.get('gender');
+    firstName.text = customerData.get('firstName');
+    lastName.text = customerData.get('lastName');
+    phone.text = customerData.get('phone');
+    phone1.text = customerData.get('phone1');
+    place.text = customerData.get('place');
+    address.text = customerData.get('address');
+    billingAddress.text = customerData.get('billingAddress');
+  }
 
   bool alltextformfieldValidation() {
     if (firstName.text.isEmpty) {

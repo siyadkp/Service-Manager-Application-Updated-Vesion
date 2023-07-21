@@ -42,7 +42,6 @@ class ScreenBilling extends StatelessWidget {
                           suggestion: Provider.of<AddCustomerNotifier>(context,
                                   listen: false)
                               .customerKeys),
-                     
                     ],
                   ),
 
@@ -63,9 +62,8 @@ class ScreenBilling extends StatelessWidget {
                       screenName: ''),
                   billingNotifier.singleCustomerCompletedCalls.isNotEmpty
                       ? ServiceCallAddingWidget(
-                          billingNotifier: billingNotifier,
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 5,
@@ -76,7 +74,7 @@ class ScreenBilling extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
@@ -84,7 +82,7 @@ class ScreenBilling extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 185,
                             ),
                             IconButton(
@@ -110,28 +108,33 @@ class ScreenBilling extends StatelessWidget {
                           width: double.infinity,
                           height: 220,
                           child: Consumer<AddProductToBillNotif>(
-                              builder: (context, addProductToBillNotif, _) {
-                            return addProductToBillNotif
-                                    .customerBillData.isEmpty
-                                ? Center(
-                                    child: Text(
-                                    'No listed item',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 15, color: Colors.black54),
-                                  ))
-                                : ListView.builder(
-                                    itemBuilder: (context, index) {
-                                      return AddProductSingleWidget(
+                            builder: (context, addProductToBillNotif, _) {
+                              return addProductToBillNotif
+                                      .customerBillData.isEmpty
+                                  ? Center(
+                                      child: Text(
+                                        'No listed item',
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 15,
+                                            color: Colors.black54),
+                                      ),
+                                    )
+                                  : ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return AddProductSingleWidget(
                                           billProductData: addProductToBillNotif
                                                   .customerBillData[
                                               addProductToBillNotif
                                                       .customerBillDataKeys[
-                                                  index]]!);
-                                    },
-                                    itemCount: addProductToBillNotif
-                                        .customerBillData.length,
-                                  );
-                          }),
+                                                  index]]!,
+                                          index: index,
+                                        );
+                                      },
+                                      itemCount: addProductToBillNotif
+                                          .customerBillData.length,
+                                    );
+                            },
+                          ),
                         ),
                         const Divider(color: Colors.grey, thickness: 1),
                       ],
@@ -146,26 +149,26 @@ class ScreenBilling extends StatelessWidget {
                         controllerObj: billingNotifier.totalAmount,
                         fontsize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ErrorTextWidget(errorText: billingNotifier.validationError),
                   ElevatedButton(
-                    onPressed: () {
-                   
+                    onPressed: ()async {
                       bool condition = false;
                       condition = billingNotifier.validation(context);
                       if (condition) {
+                    
                         pdfGeneratorObj.generateInvoicePDF(
                             context,
                             addProductToBillNotifObj.customerBillData,
                             billingNotifier.totalAmount.text,
                             addProductToBillNotifObj.discount.text);
-                        addProductToBillNotifObj.controllerDataClearing();
+                               await billingNotifier.clearDataFromController(context);
+                        
                       }
 
-                      // Provider.of<AddProductToBillNotif>(context, listen: false)
-                      //     .generateInvoicePDF(context);
+                     
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: KColors.clrDarkBlue,

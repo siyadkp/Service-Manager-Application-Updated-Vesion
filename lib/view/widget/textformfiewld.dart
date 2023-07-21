@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
-import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
 import 'package:service_manager/core/colors.dart';
 import '../../core/naming.dart';
@@ -101,10 +99,6 @@ class _TopTextTextFormFieldWidgetState
                         onChanged: (value) {
                           if (widget.screenName == allScreenNames[0]) {
                             if (widget.controllerIndex! < 5) {
-                              Provider.of<AdminAddProductNotifier>(context,
-                                      listen: false)
-                                  .textformfieldValidation(
-                                      value, widget.controllerIndex!);
                               Provider.of<AdminAddProductNotifier>(context,
                                       listen: false)
                                   .totalPriceCalculating();

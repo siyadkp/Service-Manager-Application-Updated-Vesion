@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/search/search_provider.dart';
 import 'package:service_manager/core/colors.dart';
 import 'package:service_manager/core/naming.dart';
-import 'package:service_manager/view/customerview.dart/widget/customer_view_singlewidget.dart';
+import 'package:service_manager/view/customer_view.dart/widget/customer_view_singlewidget.dart';
 import 'package:service_manager/view/widget/radio_search_sorting_widget.dart';
 import 'package:service_manager/view/widget/search_bar_widget.dart';
 import '../../controller/provider/search/const_search_objects.dart';
 import '../../core/sizing.dart';
-import '../service_calls/widget/service_callview_singlewidget.dart';
+import '../service_calls/widget/service_call_view_single_widget.dart';
 
 class ScreenSearch extends StatelessWidget {
   ScreenSearch(

@@ -4,8 +4,8 @@ import 'package:service_manager/controller/provider/add_new_call_provider/add_ne
 import 'package:service_manager/controller/provider/service_call_status_updation/service_call_status_updation.dart';
 import 'package:service_manager/core/cosnt_values.dart';
 import 'package:service_manager/core/naming.dart';
-import '../callstatusupdation/call_status_updation.dart';
-import 'widget/service_callview_singlewidget.dart';
+import '../service_call_status_updation/call_status_updation.dart';
+import 'widget/service_call_view_single_widget.dart';
 
 class ScreenServiceCalls extends StatelessWidget {
   const ScreenServiceCalls({super.key});

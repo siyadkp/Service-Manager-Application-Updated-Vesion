@@ -20,7 +20,6 @@ class ScreenAddBillToProduct extends StatelessWidget {
         Provider.of<AddProductToBillNotif>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
- 
         child: Consumer<AddProductToBillNotif>(
           builder: (ctx, addToBillNotif, _) {
             return SafeArea(
@@ -37,7 +36,7 @@ class ScreenAddBillToProduct extends StatelessWidget {
                     text: 'Product',
                   ),
                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RightTextTextFormFieldWidget(
                         height: 50,
@@ -46,7 +45,9 @@ class ScreenAddBillToProduct extends StatelessWidget {
                         controllerObj: addToBillNotif.qty,
                         keyboardType: TextInputType.number,
                       ),
-                    SizedBox(width: 15,),
+                      SizedBox(
+                        width: 15,
+                      ),
                       RightTextTextFormFieldWidget(
                           height: 50,
                           width: 150,
@@ -57,7 +58,9 @@ class ScreenAddBillToProduct extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 30,),
+                      SizedBox(
+                        width: 30,
+                      ),
                       RightTextTextFormFieldWidget(
                         height: 50,
                         width: 180,
@@ -73,7 +76,7 @@ class ScreenAddBillToProduct extends StatelessWidget {
                     children: [
                       RightTextTextFormFieldWidget(
                         height: 50,
-                        width: 140,       
+                        width: 140,
                         text: 'Total Amount :    ',
                         keyboardType: TextInputType.number,
                         controllerObj: addToBillNotif.totalAmount,
@@ -98,14 +101,20 @@ class ScreenAddBillToProduct extends StatelessWidget {
                             if (condition) {
                               BillProductModel billProductModel =
                                   BillProductModel(
-                                      productName: addToBillNotif.product.text,
-                                      qty: addToBillNotif.qty.text,
-                                      discount: addToBillNotif.discount.text,
-                                      amount: addToBillNotif.amount.text,
-                                      totalAmount:
-                                          addToBillNotif.totalAmount.text, key:addToBillNotif.product.text ,);
-                              addProductToBillNotifObj.addTobill(context,
-                                  billProductModel, addToBillNotif.product.text);
+                                type: 1,
+                                docId: "",
+                                productName: addToBillNotif.product.text,
+                                qty: addToBillNotif.qty.text,
+                                discount: addToBillNotif.discount.text,
+                                amount: addToBillNotif.amount.text,
+                                totalAmount: addToBillNotif.totalAmount.text,
+                                key: addToBillNotif.product.text,
+                              );
+                              addProductToBillNotifObj.addTobill(
+                                context,
+                                billProductModel,
+                                addToBillNotif.product.text,
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(

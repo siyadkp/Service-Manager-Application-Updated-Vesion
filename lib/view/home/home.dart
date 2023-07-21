@@ -11,8 +11,7 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddNewServiceCallNotifier addNewServiceCallNotifier =
-        Provider.of<AddNewServiceCallNotifier>(context, listen: false);
+  
     Size size = MediaQuery.of(context).size;
     double height = 40;
     return Scaffold(
@@ -63,66 +62,70 @@ class ScreenHome extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
+                  Consumer<AddNewServiceCallNotifier>(
+                    builder: (context, addNewServiceCallNotifier, child) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text(
-                            'Complete',
-                            style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: 145,
-                            child: Center(
-                              child: Text(
-                                addNewServiceCallNotifier.complete.toString(),
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  color: Colors.black54,
+                          Column(
+                            children: [
+                              const Text(
+                                'Complete',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: 145,
+                                child: Center(
+                                  child: Text(
+                                    addNewServiceCallNotifier.complete.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 28,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const Text(
-                            'Pending',
-                            style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: 145,
-                            child: Center(
-                              child: Text(
-                                addNewServiceCallNotifier.pending.toString(),
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  color: Colors.black54,
+                          Column(
+                            children: [
+                              const Text(
+                                'Pending',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: 145,
+                                child: Center(
+                                  child: Text(
+                                    addNewServiceCallNotifier.pending.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 28,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
-                      ),
-                    ],
+                      );
+                    }
                   ),
                 ],
               ),

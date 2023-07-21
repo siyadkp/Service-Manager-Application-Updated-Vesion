@@ -83,7 +83,8 @@ class PdfGenerator {
                     style: pw.TextStyle(fontSize: 16),
                   ),
                   pw.Text(
-                     "₹$discount",
+                    discount==null? "\$0":
+                     "\$${discount}",
                     style: pw.TextStyle(fontSize: 16),
                   ),
                 ],
@@ -99,7 +100,7 @@ class PdfGenerator {
                     ),
                   ),
                   pw.Text(
-                    "₹$totalAmount",
+                    ("\$${totalAmount}"),
                     style: pw.TextStyle(
                       fontSize: 20,
                       fontWeight: pw.FontWeight.bold,

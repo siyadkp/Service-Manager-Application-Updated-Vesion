@@ -6,16 +6,11 @@ import '../../../../controller/provider/add_product_to_bill_provider/add_product
 import '../../../../core/colors.dart';
 import '../../../../core/sizing.dart';
 
-class CustomerCallWidget extends StatefulWidget {
-  CustomerCallWidget({super.key, required this.callData});
+class CustomerCallWidget extends StatelessWidget {
+  CustomerCallWidget({super.key, required this.callData, required this.index});
   QueryDocumentSnapshot<Object?>? callData;
-  @override
-  State<CustomerCallWidget> createState() => _CustomerCallWidgetState();
-}
-
-class _CustomerCallWidgetState extends State<CustomerCallWidget> {
+  int index;
   bool isAddedToBill = false;
-
   @override
   Widget build(BuildContext context) {
     AddProductToBillNotif addProductToBillNotifObj =
@@ -23,53 +18,66 @@ class _CustomerCallWidgetState extends State<CustomerCallWidget> {
     return Container(
       height: 100,
       width: 370,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 3,
         child: Row(
           children: [
-            Checkbox(
-              value: isAddedToBill,
-              onChanged: (value) => setState(() {
-                if (value!) {
-                  BillProductModel billProduct = BillProductModel(
-                    productName: widget.callData?.get('product'),
-                    qty: '1',
-                    discount:'0',
-                    amount: widget.callData?.get('amount') ,
-                    totalAmount: widget.callData?.get('amount'), key: widget.callData?.get('jobnumber') ,
-                  );
-                  addProductToBillNotifObj.addTobill(context,
-                      billProduct, widget.callData?.get('jobnumber'));
-                } else {
-                  addProductToBillNotifObj
-                      .removeTobill(context,widget.callData?.get('jobnumber'));
-                }
-                isAddedToBill = value;
-              },),
+            Consumer<AddProductToBillNotif>(
+              builder:(context, addProductToBillNotif, _)  {
+                return Checkbox(
+                    value: isAddedToBill,
+                    onChanged: (value) {
+                    BillProductModel billProduct =   BillProductModel(
+                          type: 2,
+                          docId:callData!.id ,
+                          productName: callData?.get('product'),
+                          qty: '1',
+                          discount: '0',
+                          amount: callData?.get('amount'),
+                          totalAmount: callData?.get('amount'),
+                          key: callData?.get('jobnumber'),
+                        );
+                      if (value!) {
+                        
+                        addProductToBillNotifObj.addTobill(context, billProduct,
+                            callData?.get('jobnumber'),);
+                      } else {
+                        addProductToBillNotifObj.removeTobill(context,
+                            billProduct, index,);
+                      }
+                    isAddedToBill = value;
+                    });
+              }
             ),
-            Text(widget.callData?.get('jobnumber'),
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+            Text(callData?.get('jobnumber'),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             kWidth20,
             SizedBox(
-              width: 194,
+              width: 183,
               // color: Colors.red,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.callData?.get('customer'),
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    callData?.get('customer'),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    widget.callData?.get('product'),
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    callData?.get('product'),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    widget.callData?.get('date'),
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    callData?.get('date'),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

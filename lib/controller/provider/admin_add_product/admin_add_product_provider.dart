@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import '../search/const_search_objects.dart';
 
 File? photo;
-
+  String currentPhotoPathInString="";
 class AdminAddProductNotifier with ChangeNotifier {
   Map<String, QueryDocumentSnapshot> productDatas = {};
   List<String> productsKeys = [];
@@ -19,7 +19,7 @@ class AdminAddProductNotifier with ChangeNotifier {
   TextEditingController retailPrice = TextEditingController();
   TextEditingController totalPrice = TextEditingController();
 
-  List<String> validationError = ['', '', '', '', '', ''];
+  String validationError = "";
   String imageUri='';
 
   addImageFromGallery() async {
@@ -38,6 +38,9 @@ class AdminAddProductNotifier with ChangeNotifier {
     try {
       queryDocumentSnapshot.clear();
       productDatas.clear();
+      productsKeys.clear();
+       productsViewScreenSearchNotifierObject.collectionOfDatsKeys.clear();
+       productsViewScreenSearchNotifierObject.collectionOfDatas .clear();
       QuerySnapshot? productData = await usersCollection.get();
       queryDocumentSnapshot.addAll(productData.docs);
       for (QueryDocumentSnapshot doc in productData.docs) {
@@ -51,6 +54,7 @@ class AdminAddProductNotifier with ChangeNotifier {
     } on FirebaseException catch (e) {
       print(e);
     }
+    notifyListeners();
   }
 
   addProductToFirebase({
@@ -60,8 +64,12 @@ class AdminAddProductNotifier with ChangeNotifier {
     required String wholesalePrice,
     required String retailPrice,
     required String totalPrice,
+    
   }) async {
-    await cloudAdd(photo!);
+    if(photo!=null){
+  await cloudAdd(photo!);
+    }
+  
     Map<String, String> productMap = {
       'productName': productName,
       'serialNumber': serialNumber,
@@ -76,18 +84,54 @@ class AdminAddProductNotifier with ChangeNotifier {
     controllerClear();
     notifyListeners();
   }
-Future<void> cloudAdd(File file) async {
-    final Reference storageref = FirebaseStorage.instance
-        .ref()
-        .child('images/${DateTime.now().millisecondsSinceEpoch}');
 
-    final UploadTask uploadTask = storageref.putFile(file);
-    TaskSnapshot snap = await uploadTask;
-
-    final String downloadUrl = await snap.ref.getDownloadURL();
-    imageUri = downloadUrl;
-    notifyListeners();
+  deleteProduct(String docId)async{
+    usersCollection.doc(docId).delete();
+    await getProductDataFormFirebase();
   }
+   updateProductData(
+      {required String key,
+      required String productName,
+    required String serialNumber,
+    required String qty,
+    required String wholesalePrice,
+    required String retailPrice,
+    required String totalPrice,
+     }) async {
+    DocumentReference docRef = usersCollection.doc(key);
+    await docRef.update({
+      'productName': productName,
+      'serialNumber': serialNumber,
+      'qty': qty,
+      'wholesalePrice': wholesalePrice,
+      'retailPrice': retailPrice,
+      'totalPrice': totalPrice,
+    });
+  await getProductDataFormFirebase();
+  
+  }
+  productDataLoadingForEditingScreen(QueryDocumentSnapshot productData) { 
+    currentPhotoPathInString=productData.get('photo');
+    productName.text = productData.get('productName');
+    serialNumber.text = productData.get('serialNumber');
+    qty.text = productData.get('qty');
+    wholesalePrice.text = productData.get('wholesalePrice');
+    retailPrice.text = productData.get('retailPrice');
+    totalPrice.text = productData.get('totalPrice');
+  }
+
+Future<String> cloudAdd(File file) async {
+    final Reference storegeref = FirebaseStorage.instance
+        .ref()
+        .child('image/${DateTime.now().millisecond}');
+    final UploadTask uploadTask = storegeref.putFile(file);
+    TaskSnapshot snap = await uploadTask;
+    final String dowloadUrl = await snap.ref.getDownloadURL();
+    imageUri=dowloadUrl;
+    notifyListeners();
+    return dowloadUrl;
+  }
+
   totalPriceCalculating() {
     if (wholesalePrice.text.isNotEmpty && qty.text.isNotEmpty) {
       totalPrice.text =
@@ -96,54 +140,30 @@ Future<void> cloudAdd(File file) async {
     }
   }
 
-  textformfieldValidation(String value, int Index) {
-    if (value.isEmpty) {
-      validationError[Index] = 'This value is required';
-    } else {
-      validationError[Index] = '';
-    }
-    notifyListeners();
-  }
+
 
   bool alltextformfieldValidation() {
     if (productName.text.isEmpty) {
-      validationError[0] = 'This value is required';
-    } else {
-      validationError[0] = '';
+      validationError = "ProductName is required";
+    } 
+   else if (qty.text.isEmpty) {
+      validationError = "Qty is required";
+    } 
+    else if (wholesalePrice.text.isEmpty) {
+      validationError = "WholesalePrice is required";
     }
-    if (serialNumber.text.isEmpty) {
-      validationError[1] = 'This value is required';
-    } else {
-      validationError[1] = '';
+    else if (retailPrice.text.isEmpty) {
+      validationError = "Retail Price is required";
     }
-    if (qty.text.isEmpty) {
-      validationError[2] = 'This value is required';
+    else if (totalPrice.text.isEmpty) {
+      validationError = "Total Price is required";
     } else {
-      validationError[2] = '';
-    }
-    if (wholesalePrice.text.isEmpty) {
-      validationError[3] = 'This value is required';
-    } else {
-      validationError[3] = '';
-    }
-    if (retailPrice.text.isEmpty) {
-      validationError[4] = 'This value is required';
-    } else {
-      validationError[4] = '';
-    }
-    if (totalPrice.text.isEmpty) {
-      validationError[5] = 'This value is required';
-    } else {
-      validationError[5] = '';
-    }
-    bool condition = validationError.contains('This value is required');
-    if (condition) {
-      notifyListeners();
-      return false;
-    } else {
+      validationError = "";
       notifyListeners();
       return true;
     }
+    notifyListeners();
+   return false;
   }
 
   controllerClear() {

@@ -93,7 +93,7 @@ class _DropdownTextFormFieldState extends State<DropdownTextFormField> {
                   Provider.of<BillingNotifier>(context, listen: false)
                       .cusomerDataLoading(selection, context);
                 }else{
-                  AddProductToBillNotif addProductToBillNotifObj=    Provider.of<AddProductToBillNotif>(context, listen: false);
+                  AddProductToBillNotif addProductToBillNotifObj= Provider.of<AddProductToBillNotif>(context, listen: false);
                     addProductToBillNotifObj.product
                       .text = selection;
                 addProductToBillNotifObj

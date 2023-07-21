@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';  
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/core/sizing.dart';
-
+import 'package:service_manager/view/settings/terms_of_service.dart';
+import 'package:service_manager/view/settings/widget/privacy_and_policy.dart';
 import '../../controller/provider/login/login_page_provider.dart';
 import '../login/sign_in.dart';
 import 'widget/widget.dart';
@@ -37,20 +37,22 @@ class ScreenSettings extends StatelessWidget {
               padding: const EdgeInsets.only(top: 30),
               child: Column(
                 children: [
-                  SettingsWidget(
-                      icon: Icons.info,
-                      text: 'About Service Maneger',
-                      lasticon: true),
+                  
+                  GestureDetector(
+                       onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => TermsOfServiceScreen(),),),
+                    child: SettingsWidget(
+                        icon: Icons.note_sharp,
+                        text: 'Terms of Service',
+                        lasticon: true),
+                  ),
                   kHeight20,
-                  SettingsWidget(
-                      icon: Icons.note_sharp,
-                      text: 'Terms and Condition',
-                      lasticon: true),
-                  kHeight20,
-                  SettingsWidget(
-                      icon: Icons.privacy_tip,
-                      text: 'Privacy and Policy',
-                      lasticon: true),
+                  GestureDetector(
+                    onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => PrivacyPolicyScreen(),),),
+                    child: SettingsWidget(
+                        icon: Icons.privacy_tip,
+                        text: 'Privacy and Policy',
+                        lasticon: true),
+                  ),
                   kHeight20,
                   GestureDetector(
                       onTap: () {

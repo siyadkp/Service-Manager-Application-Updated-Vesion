@@ -5,8 +5,10 @@ import '../../../../core/sizing.dart';
 import '../../../../model/prouct_model.dart/product_model.dart';
 
 class AddProductSingleWidget extends StatelessWidget {
-  AddProductSingleWidget({super.key, required this.billProductData});
+  AddProductSingleWidget({super.key, required this.billProductData,required this.index,});
   BillProductModel billProductData;
+
+  int index;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +55,7 @@ class AddProductSingleWidget extends StatelessWidget {
           ),),
           IconButton(
             onPressed: () {
-              Provider.of<AddProductToBillNotif>(context,listen: false).removeTobill(context,billProductData.key);
+              Provider.of<AddProductToBillNotif>(context,listen: false).removeTobill(context,billProductData,index,);
             },
             icon: const Icon(
               Icons.remove_circle,

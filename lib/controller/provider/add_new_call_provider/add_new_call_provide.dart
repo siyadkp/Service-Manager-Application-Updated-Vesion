@@ -12,8 +12,8 @@ class AddNewServiceCallNotifier with ChangeNotifier {
   TextEditingController serialNumber = TextEditingController();
   TextEditingController description = TextEditingController();
   String? status;
-  int pending=0;
-  int complete=0;
+  int pending = 0;
+  int complete = 0;
   CollectionReference callCollection =
       FirebaseFirestore.instance.collection('call_collection');
   CollectionReference jobNumber =
@@ -31,6 +31,8 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     try {
       callDatas.clear();
       callDataKeys = [];
+      pending = 0;
+      complete = 0;
       QuerySnapshot serviceCallData = await callCollection.get();
 
       for (QueryDocumentSnapshot doc in serviceCallData.docs) {
@@ -42,11 +44,11 @@ class AddNewServiceCallNotifier with ChangeNotifier {
           userBasedCallDatas.putIfAbsent(customer, () => {});
           userBasedCallDatas[customer]?.putIfAbsent(docId, () => doc);
           complete++;
-        }else if(doc.get('status') == "Pending"){
+        } else if (doc.get('status') == "Pending") {
           pending++;
         }
       }
-      
+
       callDataKeys.addAll(callDatas.keys);
 
       if (isWorked) {
@@ -59,6 +61,33 @@ class AddNewServiceCallNotifier with ChangeNotifier {
       // Handle any errors that occur during the execution of the code
       print('An error occurred: $error');
     }
+    notifyListeners();
+  }
+
+  serviceCallCustomerUpdating(
+      String oldCustomerValue, String updatedCustomerValue) async {
+    try {
+      callDatas.clear();
+      callDataKeys = [];
+      QuerySnapshot serviceCallData = await callCollection.get();
+
+      for (QueryDocumentSnapshot doc in serviceCallData.docs) {
+        String customer = doc.get('customer');
+        String docId = doc.id;
+        if (oldCustomerValue == customer) {
+          DocumentReference docRef = callCollection.doc(docId);
+          await docRef.update({
+            'customer': updatedCustomerValue,
+          });
+        }
+
+        callDatas.putIfAbsent(docId, () => doc);
+        serviceCallViewScreenSearchNotifierObject.insert(docId);
+      }
+
+      callDataKeys.addAll(callDatas.keys);
+    } catch (e) {}
+    notifyListeners();
   }
 
   addNewCallToFirebase({
@@ -98,7 +127,7 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     await callCollection.doc(_currentjobnumber).set(customerMap);
 
     await getServiceDataFromFirebase();
-    controllerClear();
+    controllerClear(false);
     notifyListeners();
   }
 
@@ -125,10 +154,9 @@ class AddNewServiceCallNotifier with ChangeNotifier {
   bool alltextformfieldValidation() {
     if (customer.text.isEmpty) {
       validationError = "Customer field is required";
-    }else if (!collectionOfDatas.containsKey(customer.text)) {
-       validationError  = 'This Customer not valied';
-      }
-     else if (productCategory.text.isEmpty) {
+    } else if (!collectionOfDatas.containsKey(customer.text)) {
+      validationError = 'This Customer not valied';
+    } else if (productCategory.text.isEmpty) {
       validationError = "ProductCategory field is required";
     } else if (product.text.isEmpty) {
       validationError = "Product field is required";
@@ -148,8 +176,11 @@ class AddNewServiceCallNotifier with ChangeNotifier {
     }
   }
 
-  controllerClear() {
-    customer.text = '';
+  controllerClear(bool isCustomerClear) {
+    if (isCustomerClear) {
+      customer.text = '';
+    }
+
     productCategory.text = '';
     product.text = '';
     complaint.text = '';

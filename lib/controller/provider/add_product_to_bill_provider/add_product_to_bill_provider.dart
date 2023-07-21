@@ -1,9 +1,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/controller/provider/admin_add_product/admin_add_product_provider.dart';
 import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
+import 'package:service_manager/controller/provider/service_call_status_updation/service_call_status_updation.dart';
 import '../../../model/prouct_model.dart/product_model.dart';
+import '../../../view/billing/billing.dart';
+import '../../../view/billing/widget/service_call_showing_widget.dart';
 
 class AddProductToBillNotif extends ChangeNotifier {
   TextEditingController product = TextEditingController();
@@ -14,7 +18,7 @@ class AddProductToBillNotif extends ChangeNotifier {
   String validationError='';
   Map<String,BillProductModel>customerBillData={};
   List<String>customerBillDataKeys=[];
-
+ 
   // Future<void> generateInvoicePDF(BuildContext context) async {
   //   final pdf = pw.Document();
 
@@ -84,13 +88,19 @@ class AddProductToBillNotif extends ChangeNotifier {
 
   //   return directoryPath;
   // }
-
-  addTobill(BuildContext context,BillProductModel billProduct, String key) {
+ 
+  addTobill(BuildContext context,BillProductModel billProduct, String key,) {
     customerBillData.putIfAbsent(key, () => billProduct);
     totalBillAmountCalculateHelper(context);
+      if(billProduct.type==2){
+      Provider.of<ServiceCallStatusUpdationNotifier>(context,listen: false).billedProductStatusUpdation('Delivery', billProduct.docId);
+    }
+
     mapKeyStoring();
     
   }
+
+  
   totalBillAmountCalculateHelper(BuildContext context){
    Provider.of<BillingNotifier>(context,listen: false).totalBillAmountCalculater(context);
   }
@@ -100,10 +110,17 @@ class AddProductToBillNotif extends ChangeNotifier {
     notifyListeners();
   }
 
-  removeTobill(BuildContext context,String key) {
-    customerBillData.remove(key);
+  removeTobill(BuildContext context,BillProductModel billProduct,index,) {
+    if(customerBillData[billProduct.key]?.type==2){
+    addProductSingleWidgetBuilderObj[index].isAddedToBill=false;
+     Provider.of<ServiceCallStatusUpdationNotifier>(context,listen: false).billedProductStatusUpdation('Complete', billProduct.docId);
+    }
+    customerBillData.remove(billProduct.key);
     totalBillAmountCalculateHelper(context);
     mapKeyStoring();
+   
+     
+    
   }
  
   productDataLoading(String key,BuildContext context){
@@ -144,13 +161,12 @@ validation(){
     return false;
 }
 
-controllerDataClearing(){
+controllerDataClearing(BuildContext context){
   product.text='';
   qty.text='';
   discount.text='';
   amount.text='';
   totalAmount.text='';
-  customerBillData={};
 }
 
 }

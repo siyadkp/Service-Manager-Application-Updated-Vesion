@@ -5,7 +5,8 @@ import 'package:service_manager/controller/provider/add_new_call_provider/add_ne
 import 'package:service_manager/controller/provider/billing_provider/billing_provider.dart';
 import 'package:service_manager/view/billing/billing.dart';
 import 'package:service_manager/view/new_call_adding/new_call_adding.dart';
-import '../../customerview.dart/customer_view.dart';
+import '../../../controller/provider/add_product_to_bill_provider/add_product_to_bill_provider.dart';
+import '../../customer_view.dart/customer_view.dart';
 import '../../product_view/product_view.dart';
 import '../../service_calls/service_call.dart';
 
@@ -26,28 +27,37 @@ class ServiceCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            if (index == 0) {
-              Provider.of<AddNewServiceCallNotifier>(context, listen: false)
-                  .validationError = '';
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              if (index == 0) {
+                Provider.of<AddNewServiceCallNotifier>(context, listen: false)
+                    .validationError = '';
 
-              return const ScreenAddNewCall();
-            } else if (index == 1) {
-              return const ScreenServiceCalls();
-            } else if (index == 2) {
-              return const ScreenCustomerView();
-            } else if (index == 3) {
-              return const ScreenProductView();
-            } else {
-              Provider.of<BillingNotifier>(context,listen: false).clearDataFromController();
-              return const ScreenBilling();
-            }
-          },
-        ),);
+                return const ScreenAddNewCall();
+              } else if (index == 1) {
+                return const ScreenServiceCalls();
+              } else if (index == 2) {
+                return const ScreenCustomerView();
+              } else if (index == 3) {
+                return const ScreenProductView();
+              } else {
+                Provider.of<BillingNotifier>(context, listen: false)
+                    .clearDataFromController(context);
+                Provider.of<AddProductToBillNotif>(context, listen: false)
+                    .customerBillData
+                    .clear();
+                Provider.of<AddProductToBillNotif>(context, listen: false)
+                    .customerBillDataKeys
+                    .clear();
+                return const ScreenBilling();
+              }
+            },
+          ),
+        );
       },
       child: Card(
-        
         color: Colors.white,
         elevation: 8,
         child: Column(
@@ -64,19 +74,15 @@ class ServiceCardWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(
-                top: text == "Product and Details" ? 45 :55,
-                left: 10
-              ),
+              padding: EdgeInsets.only(
+                  top: text == "Product and Details" ? 45 : 55, left: 10),
               child: SizedBox(
-                  width: 160,
-                  height: text == "Product and Details" ?50: 40,
-                  child: Text(
-                    text,
-                    style:GoogleFonts.poppins( fontSize: 17, fontWeight: FontWeight.w600)
-                    
-                     
-                  ),),
+                width: 160,
+                height: text == "Product and Details" ? 50 : 40,
+                child: Text(text,
+                    style: GoogleFonts.poppins(
+                        fontSize: 17, fontWeight: FontWeight.w600)),
+              ),
             )
           ],
         ),

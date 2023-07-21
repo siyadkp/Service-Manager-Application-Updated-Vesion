@@ -82,6 +82,10 @@ class ServiceCallStatusUpdationNotifier with ChangeNotifier {
     notifyListeners();
   }
 
+billedProductStatusUpdation(String status,String docId){
+   DocumentReference docRef = callCollection.doc(docId);
+    docRef.update({ 'status': status, });
+}
   // textformfieldValidation(String value, int index) {
   //   print(collectionOfDatas.containsKey(value));
   //   if (index == 0) {

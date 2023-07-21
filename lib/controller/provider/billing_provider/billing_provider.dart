@@ -5,6 +5,7 @@ import 'package:service_manager/controller/provider/add_customer_provider/add_cu
 import 'package:service_manager/controller/provider/add_new_call_provider/add_new_call_provide.dart';
 import 'package:service_manager/controller/provider/add_product_to_bill_provider/add_product_to_bill_provider.dart';
 import '../../../model/prouct_model.dart/product_model.dart';
+import '../../../view/billing/widget/service_call_showing_widget.dart';
 
 class BillingNotifier with ChangeNotifier {
   TextEditingController customer = TextEditingController();
@@ -38,12 +39,21 @@ class BillingNotifier with ChangeNotifier {
     return false;
   }
 
-  clearDataFromController() {
+  clearDataFromController(BuildContext context) async {
+    AddProductToBillNotif addProductToBillNotifObj= Provider.of<AddProductToBillNotif>(context,listen: false);
+    singleCustomerCompletedCalls ={};
+    singleCustomerCompletedCallsKeys =[];
     validationError = '';
     customer.text = '';
     phone.text = '';
     billingAddress.text = '';
     totalAmount.text = '';
+    addProductSingleWidgetBuilderObj.clear();
+     addProductToBillNotifObj.customerBillData={};
+      addProductToBillNotifObj.customerBillDataKeys=[];
+    await Provider.of<AddNewServiceCallNotifier>(context, listen: false)
+        .getServiceDataFromFirebase();
+    notifyListeners();
   }
 
   totalBillAmountCalculater(BuildContext context) {

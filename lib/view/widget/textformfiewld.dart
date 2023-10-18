@@ -6,7 +6,7 @@ import 'package:service_manager/core/colors.dart';
 import '../../core/naming.dart';
 
 class TopTextTextFormFieldWidget extends StatefulWidget {
-  TopTextTextFormFieldWidget(
+  const TopTextTextFormFieldWidget(
       {super.key,
       required this.width,
       required this.height,
@@ -16,24 +16,24 @@ class TopTextTextFormFieldWidget extends StatefulWidget {
       this.controllerIndex,
       this.maxLines = 1,
       this.paddingtop = 15,
-      this.paddingRight=0,
+      this.paddingRight = 0,
       this.fontsize = 15,
       this.condition = false,
       this.hintText = '',
       this.keyboardType = TextInputType.name});
-  double width;
-  double height;
-  double paddingtop;
-  double paddingRight;
-  double fontsize;
-  int maxLines;
-  int? controllerIndex;
-  String text;
-  String hintText;
-  String screenName;
-  bool condition;
-  TextEditingController controllerObj;
-  TextInputType keyboardType;
+  final double width;
+  final double height;
+  final double paddingtop;
+  final double paddingRight;
+  final double fontsize;
+  final int maxLines;
+  final int? controllerIndex;
+  final String text;
+  final String hintText;
+  final String screenName;
+  final bool condition;
+  final TextEditingController controllerObj;
+  final TextInputType keyboardType;
 
   @override
   State<TopTextTextFormFieldWidget> createState() =>
@@ -49,7 +49,8 @@ class _TopTextTextFormFieldWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: widget.paddingtop,right: widget.paddingRight),
+      padding:
+          EdgeInsets.only(top: widget.paddingtop, right: widget.paddingRight),
       child: Form(
         key: _formKey,
         child: Column(
@@ -72,7 +73,7 @@ class _TopTextTextFormFieldWidgetState
               height: widget.height,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  border: Border.all(color:KColors.clrGrey)),
+                  border: Border.all(color: KColors.clrGrey)),
               child: widget.condition
                   ? TextFormField(
                       controller: widget.controllerObj,
@@ -84,8 +85,7 @@ class _TopTextTextFormFieldWidgetState
                           filled: true),
                       onChanged: (value) {
                         if (widget.screenName == allScreenNames[1] &&
-                            widget.controllerIndex != null) {
-                        }
+                            widget.controllerIndex != null) {}
                       },
                     )
                   : Padding(
@@ -103,7 +103,7 @@ class _TopTextTextFormFieldWidgetState
                                       listen: false)
                                   .totalPriceCalculating();
                             }
-                          } 
+                          }
                         },
                       ),
                     ),
@@ -114,5 +114,3 @@ class _TopTextTextFormFieldWidgetState
     );
   }
 }
-
-

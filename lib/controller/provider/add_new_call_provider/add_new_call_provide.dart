@@ -86,7 +86,9 @@ class AddNewServiceCallNotifier with ChangeNotifier {
       }
 
       callDataKeys.addAll(callDatas.keys);
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
     notifyListeners();
   }
 

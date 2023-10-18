@@ -11,17 +11,17 @@ import '../../product_view/product_view.dart';
 import '../../service_calls/service_call.dart';
 
 class ServiceCardWidget extends StatelessWidget {
-  ServiceCardWidget(
+  const ServiceCardWidget(
       {super.key,
       required this.text,
       required this.image,
       required this.top,
       required this.index});
 
-  String text;
-  String image;
-  double top;
-  int index;
+  final String text;
+  final String image;
+  final double top;
+  final int index;
 
   @override
   Widget build(BuildContext context) {

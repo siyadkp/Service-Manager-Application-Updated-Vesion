@@ -7,14 +7,14 @@ import 'package:service_manager/core/naming.dart';
 import '../../controller/provider/search/const_search_objects.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  SearchBarWidget(
+  const SearchBarWidget(
       {super.key,
       required this.searchingDatas,
       required this.keyValues,
       required this.screenName});
-  Map<String, QueryDocumentSnapshot> searchingDatas;
-  List<String> keyValues = [];
-  String screenName;
+  final Map<String, QueryDocumentSnapshot> searchingDatas;
+  final List<String> keyValues;
+  final String screenName;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,36 +26,37 @@ class SearchBarWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             border: Border.all(width: 2, color: KColors.clrDarkBlue)),
         child: TextField(
-            style: TextStyle(fontSize: 16),
-            textAlign: TextAlign.left,
-            decoration: InputDecoration(
-              hintText: 'Search',
-              suffixIcon: Icon(Icons.search),
-              hintStyle: TextStyle(color: Colors.black45),
-              filled: true,
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-            ),
-            onChanged: (value) {
-              if (screenName == allScreenNames[6]) {
-                Provider.of<TrieNotifier>(context, listen: false).searchHelper(
-                    searchingDatas,
+          style: const TextStyle(fontSize: 16),
+          textAlign: TextAlign.left,
+          decoration: const InputDecoration(
+            hintText: 'Search',
+            suffixIcon: Icon(Icons.search),
+            hintStyle: TextStyle(color: Colors.black45),
+            filled: true,
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+          ),
+          onChanged: (value) {
+            if (screenName == allScreenNames[6]) {
+              Provider.of<TrieNotifier>(context, listen: false).searchHelper(
+                  searchingDatas,
                   keyValues,
-                    value,
-                    productsViewScreenSearchNotifierObject);
-              } else if (screenName == allScreenNames[7]) {
-                Provider.of<TrieNotifier>(context, listen: false).searchHelper(
-                    searchingDatas,
-                    keyValues,
-                    value,
-                    customerViewScreenSearchNotifierObject);
-              }else if (screenName == allScreenNames[8]) {
-                Provider.of<TrieNotifier>(context, listen: false).searchHelper(
-                    searchingDatas,
-                    keyValues,
-                    value,
-                    serviceCallViewScreenSearchNotifierObject);
-              }
-            }),
+                  value,
+                  productsViewScreenSearchNotifierObject);
+            } else if (screenName == allScreenNames[7]) {
+              Provider.of<TrieNotifier>(context, listen: false).searchHelper(
+                  searchingDatas,
+                  keyValues,
+                  value,
+                  customerViewScreenSearchNotifierObject);
+            } else if (screenName == allScreenNames[8]) {
+              Provider.of<TrieNotifier>(context, listen: false).searchHelper(
+                  searchingDatas,
+                  keyValues,
+                  value,
+                  serviceCallViewScreenSearchNotifierObject);
+            }
+          },
+        ),
       ),
     );
   }

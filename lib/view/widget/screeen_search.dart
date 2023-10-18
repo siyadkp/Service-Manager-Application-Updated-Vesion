@@ -5,21 +5,19 @@ import 'package:service_manager/controller/provider/search/search_provider.dart'
 import 'package:service_manager/core/colors.dart';
 import 'package:service_manager/core/naming.dart';
 import 'package:service_manager/view/customer_view.dart/widget/customer_view_singlewidget.dart';
-import 'package:service_manager/view/widget/radio_search_sorting_widget.dart';
 import 'package:service_manager/view/widget/search_bar_widget.dart';
 import '../../controller/provider/search/const_search_objects.dart';
-import '../../core/sizing.dart';
 import '../service_calls/widget/service_call_view_single_widget.dart';
 
 class ScreenSearch extends StatelessWidget {
-  ScreenSearch(
+  const ScreenSearch(
       {super.key,
       required this.collectionOfDatas,
       required this.collectionOfDatasKeys,
       required this.screenName});
-  Map<String, QueryDocumentSnapshot> collectionOfDatas;
-  List<String> collectionOfDatasKeys;
-  String screenName;
+  final Map<String, QueryDocumentSnapshot> collectionOfDatas;
+  final List<String> collectionOfDatasKeys;
+  final String screenName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,25 +42,27 @@ class ScreenSearch extends StatelessWidget {
                   screenName: screenName,
                   searchingDatas: collectionOfDatas),
             ),
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.only(bottom: 20, left: 8),
+                padding: EdgeInsets.only(bottom: 20, left: 8),
                 scrollDirection: Axis.horizontal,
               ),
             ),
             Consumer<TrieNotifier>(
               builder: (context, trieNotifier, _) {
-
-                  
-              
-                  if (screenName == allScreenNames[8]) {
-                    if (serviceCallViewScreenSearchNotifierObject
-                    .collectionOfDatas.isEmpty) {
-                  return Center(child: Text('No matching results found',style:TextStyle(fontSize: 15,color: Colors.blueGrey),));}
-                   else{ return Expanded(
+                if (screenName == allScreenNames[8]) {
+                  if (serviceCallViewScreenSearchNotifierObject
+                      .collectionOfDatas.isEmpty) {
+                    return const Center(
+                        child: Text(
+                      'No matching results found',
+                      style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                    ));
+                  } else {
+                    return Expanded(
                       child: ListView.builder(
-                          padding: EdgeInsets.only(left: 10, right: 12),
+                          padding: const EdgeInsets.only(left: 10, right: 12),
                           itemBuilder: (context, index) {
                             return ServicallViewSingleWidget(
                               serviceCallData:
@@ -75,11 +75,17 @@ class ScreenSearch extends StatelessWidget {
                           itemCount: serviceCallViewScreenSearchNotifierObject
                               .collectionOfDatas.length),
                     );
-                  }} else if (screenName == allScreenNames[7]) {
-                     if (customerViewScreenSearchNotifierObject
-                    .collectionOfDatas.isEmpty) {
-                  return Center(child: Text('No matching results found',style:TextStyle(fontSize: 15,color: Colors.blueGrey),));}
-                  else{  return Expanded(
+                  }
+                } else if (screenName == allScreenNames[7]) {
+                  if (customerViewScreenSearchNotifierObject
+                      .collectionOfDatas.isEmpty) {
+                    return const Center(
+                        child: Text(
+                      'No matching results found',
+                      style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                    ));
+                  } else {
+                    return Expanded(
                       child: ListView.builder(
                           itemBuilder: (context, index) {
                             return CustomerViewSingleWidget(
@@ -92,9 +98,9 @@ class ScreenSearch extends StatelessWidget {
                           itemCount: customerViewScreenSearchNotifierObject
                               .collectionOfDatas.length),
                     );
-                   } }
-                  return Text('');
-               
+                  }
+                }
+                return const Text('');
               },
             )
           ],

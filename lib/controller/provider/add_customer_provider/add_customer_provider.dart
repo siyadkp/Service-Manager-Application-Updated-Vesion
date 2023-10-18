@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../search/const_search_objects.dart';
 
 class AddCustomerNotifier with ChangeNotifier {
@@ -66,9 +65,7 @@ class AddCustomerNotifier with ChangeNotifier {
   }
 
   updateCustomerData(
-      {
-    
-        required String key,
+      {required String key,
       required String gender,
       required String firstName,
       required String lastName,
@@ -89,8 +86,8 @@ class AddCustomerNotifier with ChangeNotifier {
       'address': address,
       'billingAddress': billingAddress,
     });
-   
-   await getCustomerDataFormFirebase();
+
+    await getCustomerDataFormFirebase();
   }
 
   customerDataLoadingForEditingScreen(QueryDocumentSnapshot customerData) {

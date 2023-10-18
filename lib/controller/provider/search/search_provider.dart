@@ -7,7 +7,7 @@ class TrieNotifier with ChangeNotifier {
 
   List<String> suggestions = [];
   List<String> collectionOfDatsKeys = [];
-  Trie() {
+  trie() {
     root = TrieNode();
   }
 
@@ -50,18 +50,18 @@ class TrieNotifier with ChangeNotifier {
     getSuggestions(current, prefix, suggestions);
   }
 
-  searchHelper(Map<String, QueryDocumentSnapshot> Datas, List<String> keys,
+  searchHelper(Map<String, QueryDocumentSnapshot> datas, List<String> keys,
       String value, TrieNotifier trieNotifier) {
     trieNotifier.collectionOfDatas = {};
     trieNotifier.collectionOfDatsKeys = [];
     search(value, trieNotifier.root);
     if (suggestions.isNotEmpty) {
       for (String suggestion in suggestions) {
-        trieNotifier.collectionOfDatas[suggestion] = Datas[suggestion]!;
+        trieNotifier.collectionOfDatas[suggestion] = datas[suggestion]!;
         trieNotifier.collectionOfDatsKeys.add(suggestion);
       }
     } else if (value.isEmpty) {
-      trieNotifier.collectionOfDatas = Datas;
+      trieNotifier.collectionOfDatas = datas;
       trieNotifier.collectionOfDatsKeys = keys;
     }
     notifyListeners();

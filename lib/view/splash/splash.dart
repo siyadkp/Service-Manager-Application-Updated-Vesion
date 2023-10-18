@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/add_customer_provider/add_customer_provider.dart';
@@ -18,33 +17,38 @@ class ScreenSplash extends StatefulWidget {
 
 class _ScreenSplashState extends State<ScreenSplash> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     navigation(context);
   }
 
-  
   @override
   Widget build(BuildContext context) {
-
-
     return const Scaffold();
   }
-    navigation(context)async{
-     final FirebaseAuth auth = FirebaseAuth.instance;
-await Provider.of<AdminAddProductNotifier>(context,listen: false).getProductDataFormFirebase();
-await Provider.of<AddCustomerNotifier>(context,listen: false).getCustomerDataFormFirebase();
-await Provider.of<AddNewServiceCallNotifier>(context,listen: false).getServiceDataFromFirebase();
- User? user = auth.currentUser;
-Navigator.push(context, MaterialPageRoute(builder: (context) {
-  if(user?.email=='admin123@gmail.com'){
-    return const ScreenAdminHome();
-  }
-   else if(user == null) {
-      return ScreenSignIn();
-    } else {
-      return const ScreenHome();
-    }
-},),);
+
+  navigation(context) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    await Provider.of<AdminAddProductNotifier>(context, listen: false)
+        .getProductDataFormFirebase();
+    await Provider.of<AddCustomerNotifier>(context, listen: false)
+        .getCustomerDataFormFirebase();
+    await Provider.of<AddNewServiceCallNotifier>(context, listen: false)
+        .getServiceDataFromFirebase();
+    User? user = auth.currentUser;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          if (user?.email == 'admin123@gmail.com') {
+            return const ScreenAdminHome();
+          } else if (user == null) {
+            return ScreenSignIn();
+          } else {
+            return const ScreenHome();
+          }
+        },
+      ),
+    );
   }
 }

@@ -3,17 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:service_manager/controller/provider/login/login_page_provider.dart';
 import 'package:service_manager/controller/provider/register/register_page_provider.dart';
-
 import '../../core/colors.dart';
 
 class ScreenRegisterAccount extends StatelessWidget {
   ScreenRegisterAccount({super.key});
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController confirmpassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: NotificationListener<OverscrollIndicatorNotification>(
@@ -66,7 +64,7 @@ class ScreenRegisterAccount extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
                     registerNotifier.validationError[0],
-                    style: TextStyle(color: Colors.red, fontSize: 11),
+                    style: const TextStyle(color: Colors.red, fontSize: 11),
                   ),
                 );
               }),
@@ -103,7 +101,7 @@ class ScreenRegisterAccount extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
                     registerNotifier.validationError[1],
-                    style: TextStyle(color: Colors.red, fontSize: 11),
+                    style: const TextStyle(color: Colors.red, fontSize: 11),
                   ),
                 );
               }),
@@ -144,7 +142,7 @@ class ScreenRegisterAccount extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
                     registerNotifier.validationError[2],
-                    style: TextStyle(color: Colors.red, fontSize: 11),
+                    style: const TextStyle(color: Colors.red, fontSize: 11),
                   ),
                 );
               }),
@@ -157,7 +155,7 @@ class ScreenRegisterAccount extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
                     registerNotifier.validationError[3],
-                    style: TextStyle(color: Colors.red, fontSize: 11),
+                    style: const TextStyle(color: Colors.red, fontSize: 11),
                   ),
                 );
               }),
@@ -170,7 +168,7 @@ class ScreenRegisterAccount extends StatelessWidget {
                     );
                   },
                   child: Center(
-                    child:  Text('Go to Sign In',
+                    child: Text('Go to Sign In',
                         style: TextStyle(color: KColors.clrDarkBlue)),
                   )),
               Padding(

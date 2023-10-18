@@ -8,9 +8,11 @@ import '../../../../core/sizing.dart';
 
 class CustomerCallWidget extends StatelessWidget {
   CustomerCallWidget({super.key, required this.callData, required this.index});
-  QueryDocumentSnapshot<Object?>? callData;
-  int index;
+
+  final QueryDocumentSnapshot<Object?>? callData;
+  final int index;
   bool isAddedToBill = false;
+
   @override
   Widget build(BuildContext context) {
     AddProductToBillNotif addProductToBillNotifObj =
@@ -27,32 +29,36 @@ class CustomerCallWidget extends StatelessWidget {
         child: Row(
           children: [
             Consumer<AddProductToBillNotif>(
-              builder:(context, addProductToBillNotif, _)  {
-                return Checkbox(
-                    value: isAddedToBill,
-                    onChanged: (value) {
-                    BillProductModel billProduct =   BillProductModel(
-                          type: 2,
-                          docId:callData!.id ,
-                          productName: callData?.get('product'),
-                          qty: '1',
-                          discount: '0',
-                          amount: callData?.get('amount'),
-                          totalAmount: callData?.get('amount'),
-                          key: callData?.get('jobnumber'),
-                        );
-                      if (value!) {
-                        
-                        addProductToBillNotifObj.addTobill(context, billProduct,
-                            callData?.get('jobnumber'),);
-                      } else {
-                        addProductToBillNotifObj.removeTobill(context,
-                            billProduct, index,);
-                      }
+                builder: (context, addProductToBillNotif, _) {
+              return Checkbox(
+                  value: isAddedToBill,
+                  onChanged: (value) {
+                    BillProductModel billProduct = BillProductModel(
+                      type: 2,
+                      docId: callData!.id,
+                      productName: callData?.get('product'),
+                      qty: '1',
+                      discount: '0',
+                      amount: callData?.get('amount'),
+                      totalAmount: callData?.get('amount'),
+                      key: callData?.get('jobnumber'),
+                    );
+                    if (value!) {
+                      addProductToBillNotifObj.addTobill(
+                        context,
+                        billProduct,
+                        callData?.get('jobnumber'),
+                      );
+                    } else {
+                      addProductToBillNotifObj.removeTobill(
+                        context,
+                        billProduct,
+                        index,
+                      );
+                    }
                     isAddedToBill = value;
-                    });
-              }
-            ),
+                  });
+            }),
             Text(callData?.get('jobnumber'),
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
